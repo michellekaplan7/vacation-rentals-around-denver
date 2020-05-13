@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import Areas from "../Areas/Areas";
@@ -8,8 +8,7 @@ import WelcomeForm from "../WelcomeForm/WelcomeForm";
 class App extends Component {
 	state = {
 		url: "https://vrad-api.herokuapp.com",
-		areas: null,
-		listings: null,
+		areas: [],
 	};
 
 	componentDidMount() {
@@ -57,16 +56,15 @@ class App extends Component {
 	render() {
 		console.log(this.state.areas);
 		return (
-			<BrowserRouter>
-				<main className="App">
-					<WelcomeForm />
-					{!this.state.areas ? (
-						<h1>Loading...</h1>
-					) : (
-						<Areas areas={this.state.areas} />
-					)}
-				</main>
-			</BrowserRouter>
+			<main className="app">
+				<Switch>
+					<Route exact path="/" render={() => <WelcomeForm />} />
+					<Route
+						path="/areas"
+						render={() => <Areas areas={this.state.areas} />}
+					/>
+				</Switch>
+			</main>
 		);
 	}
 }
