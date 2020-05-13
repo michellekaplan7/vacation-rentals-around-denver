@@ -1,12 +1,20 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from "react";
+import WelcomeForm from "../WelcomeForm/WelcomeForm";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <main className="app">
+        <WelcomeForm />
+      </main>
+    );
+  }
 }
 
 export default App;
