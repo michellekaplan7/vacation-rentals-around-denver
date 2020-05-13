@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 
 import Areas from "../Areas/Areas";
+import WelcomeForm from "../WelcomeForm/WelcomeForm";
 
 class App extends Component {
 	state = {
@@ -57,13 +58,14 @@ class App extends Component {
 		console.log(this.state.areas);
 		return (
 			<BrowserRouter>
-				<div className="App">
+				<main className="App">
+					<WelcomeForm />
 					{!this.state.areas ? (
 						<h1>Loading...</h1>
 					) : (
 						<Areas areas={this.state.areas} />
 					)}
-				</div>
+				</main>
 			</BrowserRouter>
 		);
 	}
