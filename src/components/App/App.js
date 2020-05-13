@@ -16,7 +16,6 @@ class App extends Component {
 			.then((response) => response.json())
 			.then((data) => this.fetchAreaDetails(data.areas))
 			.then((areas) => this.setState({ areas }))
-			// .then((data) => this.setState({ areas: data.areas }))
 			.catch((err) => console.log(err));
 	}
 
@@ -27,24 +26,35 @@ class App extends Component {
 				.then((details) => {
 					return {
 						area: area.area,
+						details: area.details,
 						...details,
 					};
 				});
+			// .then((data) => this.fetchListingDetails(data.listings))
+			// .then((allInfo) => console.log(allInfo));
 		});
 		return Promise.all(promises);
 	};
 
-	updateState = (areasInfo) => {};
+	// .then((details) => {
+	// 	return {
+	// 		area: area.area,
+	// 		...details,
+	// 	};
+	// });
 
-	// fetchListingDetails = (listings) => {
-	// 	const promises = listings.map((listing) => {
-	// 		return fetch(this.state.url + listing.details)
-	// 			.then((response) => response.json())
-	// 			.then(details);
-	// 	});
-	// };
+	fetchListingDetails = (listings) => {
+		const promises = listings.map((listing) => {
+			return fetch(this.state.url + listing)
+				.then((response) => response.json())
+				.catch((err) => console.log(err));
+		});
+		console.log(promises);
+		return Promise.all(promises);
+	};
 
 	render() {
+		console.log(this.state.areas);
 		return (
 			<BrowserRouter>
 				<div className="App">
