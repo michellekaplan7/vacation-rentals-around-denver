@@ -1,0 +1,8 @@
+.areas {
+	display: flex;
+	flex-direction: row;
+}
+
+.area {
+	border: 2px solid orange;
+}
