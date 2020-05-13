@@ -8,78 +8,88 @@ class WelcomeForm extends Component {
     this.state = {
       name: "",
       email: "",
-      value: "",
+      purpose: "",
+      error: ""
     };
   }
 
   handleChange = (event) => {
-      this.setState({[event.target.name]: event.target.value})
-  }
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
   handleSignIn = (event) => {
-      event.preventDefault();
+    event.preventDefault();
+    // !this.state.name.length || !this.state.email.length || !this.state.purpose.length
 
-      //something maybe passiing in props??
-      this.clearInputs();
+    //something maybe passing in props??
+    // this.showErrorMessage()
+    // this.clearInputs();
   };
 
-  clearInputs = () => {
-      this.setState({name: "", email: "", value: ""});
-  };
+  // clearInputs = () => {
+  //   this.setState({ name: "", email: "", value: "" });
+  // };
+
+  // showErrorMessage = () => {
+  //   return !this.state.email && <h4 className="sign-in-error">Please fill out all fields.</h4>
+  // }
 
   render() {
     return (
       <form>
-        <h3>Welcome to VRAD! Please enter your information below to sign in.</h3>
-        <label>
-          Please enter your name:
-          <input
-            type="text"
-            placeholder="Please enter your name"
-            name="name"
-            value={this.state.name}
-            onChange={(event) => this.handleChange(event)}
-            required
-          />
-        </label>
-        <label>
-          Please enter your email:
-          <input
-            type="email"
-            placeholder="Please enter your email address"
-            name="email"
-            value={this.state.email}
-            onChange={(event) => this.handleChange(event)}
-            required
-          />
-        </label>
-        <label>
-          Please select your reason for visiting:
-          <select
-            name="value"
-            value={this.state.value}
-            onChange={(event) => this.handleChange(event)}
-            required
-          >
-            <option value="">--Please select your reason for visiting</option>
-            <option value="business">Business</option>
-            <option value="vacation">Vacation</option>
-            <option value="other">Other</option>
-          </select>
-        </label>
-        <button
+        <h3 className="sign-in-title">
+          Welcome to VRAD!
+        </h3>
+        <div className="sign-in-items">
+          <label>
+            Please enter your name:
+            <input
+              type="text"
+              placeholder="Name"
+              name="name"
+              value={this.state.name}
+              onChange={(event) => this.handleChange(event)}
+              required
+            />
+          </label>
+          <label>
+            Please enter your email:
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={this.state.email}
+              onChange={(event) => this.handleChange(event)}
+            />
+          </label>
+          <label>
+            Please select your reason for visiting:
+            <select
+              name="purpose"
+              value={this.state.purpose}
+              onChange={(event) => this.handleChange(event)}
+            >
+              <option value="">--Select reason--</option>
+              <option value="business">Business</option>
+              <option value="vacation">Vacation</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <button
+            type="submit"
             className="sign-in-button"
             onClick={(event) => this.handleSignIn(event)}
-        >
+          >
             Sign in
-        </button>
+          </button>
+        </div>
       </form>
     );
   }
 }
 
 // WelcomeForm.propTypes = {
-    
+
 // };
 
 export default WelcomeForm;
