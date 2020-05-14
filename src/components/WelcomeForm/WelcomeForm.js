@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import "./WelcomeForm.css";
 // import PropTypes from "prop-types";
 
@@ -9,7 +10,7 @@ class WelcomeForm extends Component {
       name: "",
       email: "",
       purpose: "",
-      error: ""
+      isLoggedIn: false,
     };
   }
 
@@ -19,27 +20,17 @@ class WelcomeForm extends Component {
 
   handleSignIn = (event) => {
     event.preventDefault();
-    // !this.state.name.length || !this.state.email.length || !this.state.purpose.length
-
-    //something maybe passing in props??
-    // this.showErrorMessage()
-    // this.clearInputs();
+    this.setState({ isLoggedIn: true });
   };
 
-  // clearInputs = () => {
-  //   this.setState({ name: "", email: "", value: "" });
-  // };
-
-  // showErrorMessage = () => {
-  //   return !this.state.email && <h4 className="sign-in-error">Please fill out all fields.</h4>
-  // }
-
   render() {
+    if (this.state.isLoggedIn) {
+      return <Redirect to="/areas" />;
+    }
+
     return (
-      <form>
-        <h3 className="sign-in-title">
-          Welcome to VRAD!
-        </h3>
+      <form onSubmit={(event) => this.handleSignIn(event)}>
+        <h3 className="sign-in-title">Welcome to VRAD!</h3>
         <div className="sign-in-items">
           <label>
             Please enter your name:
@@ -60,6 +51,7 @@ class WelcomeForm extends Component {
               name="email"
               value={this.state.email}
               onChange={(event) => this.handleChange(event)}
+              required
             />
           </label>
           <label>
@@ -68,6 +60,7 @@ class WelcomeForm extends Component {
               name="purpose"
               value={this.state.purpose}
               onChange={(event) => this.handleChange(event)}
+              required
             >
               <option value="">--Select reason--</option>
               <option value="business">Business</option>
@@ -75,11 +68,7 @@ class WelcomeForm extends Component {
               <option value="other">Other</option>
             </select>
           </label>
-          <button
-            type="submit"
-            className="sign-in-button"
-            onClick={(event) => this.handleSignIn(event)}
-          >
+          <button type="submit" className="sign-in-button">
             Sign in
           </button>
         </div>
