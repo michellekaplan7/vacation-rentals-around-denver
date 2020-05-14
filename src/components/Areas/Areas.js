@@ -11,6 +11,7 @@ const Areas = (props) => {
 				<h2 className="nickname">{area.area}</h2>
 				<h3 className="location">{area.location}</h3>
 				<p>{area.about}</p>
+				{/* <Link to={`areas/${area.id}/listings`}></Link> */}
 				<button className="see-listings-button">
 					See {area.area} Listings
 				</button>

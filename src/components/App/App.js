@@ -4,6 +4,7 @@ import "./App.css";
 
 import Areas from "../Areas/Areas";
 import WelcomeForm from "../WelcomeForm/WelcomeForm";
+import Listings from "../Listings/Listings";
 
 class App extends Component {
 	state = {
@@ -35,6 +36,7 @@ class App extends Component {
 								about: details.about,
 								region_code: details.region_code,
 								quick_search: details.quick_code,
+								// listings: details.listings,
 								listingInfo: response,
 							};
 						})
@@ -67,6 +69,12 @@ class App extends Component {
 					<Route
 						path="/areas"
 						render={() => <Areas areas={this.state.areas} />}
+					/>
+					<Route
+						path="areas/:id/listings/"
+						render={({ match }) => (
+							<Listings areas={this.state.areas[match.params.id]} />
+						)}
 					/>
 				</Switch>
 			</main>
