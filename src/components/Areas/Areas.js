@@ -9,6 +9,7 @@ const Areas = (props) => {
 			<div key={i} className={`area ${area.name.split(" ").join("-")}`}>
 				<h1>{area.name}</h1>
 				<h2 className="nickname">{area.area}</h2>
+				<h3 className="location">{area.location}</h3>
 				<p>{area.about}</p>
 				<button className="see-listings-button">
 					See {area.area} Listings
