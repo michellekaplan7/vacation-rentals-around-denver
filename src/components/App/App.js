@@ -24,32 +24,37 @@ class App extends Component {
 			return fetch(this.state.url + area.details)
 				.then((response) => response.json())
 				.then((details) => {
-					return {
-						area: area.area,
-						details: area.details,
-						...details,
-					};
+					return Promise.resolve(
+						this.fetchListingDetails(details.listings).then((response) => {
+							return {
+								area: area.area,
+								details: area.details,
+								id: 590,
+								name: details.name,
+								location: details.name,
+								about: details.name,
+								region_code: details.region_code,
+								quick_search: details.quick_code,
+								listingInfo: response,
+							};
+						})
+					);
 				});
-			// .then((data) => this.fetchListingDetails(data.listings))
-			// .then((allInfo) => console.log(allInfo));
 		});
 		return Promise.all(promises);
 	};
-
-	// .then((details) => {
-	// 	return {
-	// 		area: area.area,
-	// 		...details,
-	// 	};
-	// });
 
 	fetchListingDetails = (listings) => {
 		const promises = listings.map((listing) => {
 			return fetch(this.state.url + listing)
 				.then((response) => response.json())
-				.catch((err) => console.log(err));
+				.then((info) => {
+					return {
+						url: listing,
+						...info,
+					};
+				});
 		});
-		console.log(promises);
 		return Promise.all(promises);
 	};
 
