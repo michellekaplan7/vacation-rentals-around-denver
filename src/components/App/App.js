@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
 import Areas from "../Areas/Areas";
@@ -8,8 +8,7 @@ import WelcomeForm from "../WelcomeForm/WelcomeForm";
 class App extends Component {
 	state = {
 		url: "https://vrad-api.herokuapp.com",
-		areas: null,
-		listings: null,
+		areas: [],
 	};
 
 	componentDidMount() {
@@ -25,48 +24,52 @@ class App extends Component {
 			return fetch(this.state.url + area.details)
 				.then((response) => response.json())
 				.then((details) => {
-					return {
-						area: area.area,
-						details: area.details,
-						...details,
-					};
+					return Promise.resolve(
+						this.fetchListingDetails(details.listings).then((response) => {
+							return {
+								area: area.area,
+								details: area.details,
+								id: 590,
+								name: details.name,
+								location: details.location,
+								about: details.about,
+								region_code: details.region_code,
+								quick_search: details.quick_code,
+								listingInfo: response,
+							};
+						})
+					);
 				});
-			// .then((data) => this.fetchListingDetails(data.listings))
-			// .then((allInfo) => console.log(allInfo));
 		});
 		return Promise.all(promises);
 	};
-
-	// .then((details) => {
-	// 	return {
-	// 		area: area.area,
-	// 		...details,
-	// 	};
-	// });
 
 	fetchListingDetails = (listings) => {
 		const promises = listings.map((listing) => {
 			return fetch(this.state.url + listing)
 				.then((response) => response.json())
-				.catch((err) => console.log(err));
+				.then((info) => {
+					return {
+						url: listing,
+						...info,
+					};
+				});
 		});
-		console.log(promises);
 		return Promise.all(promises);
 	};
 
 	render() {
 		console.log(this.state.areas);
 		return (
-			<BrowserRouter>
-				<main className="App">
-					<WelcomeForm />
-					{!this.state.areas ? (
-						<h1>Loading...</h1>
-					) : (
-						<Areas areas={this.state.areas} />
-					)}
-				</main>
-			</BrowserRouter>
+			<main className="app">
+				<Switch>
+					<Route exact path="/" render={() => <WelcomeForm />} />
+					<Route
+						path="/areas"
+						render={() => <Areas areas={this.state.areas} />}
+					/>
+				</Switch>
+			</main>
 		);
 	}
 }
