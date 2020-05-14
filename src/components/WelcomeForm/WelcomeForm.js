@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import "./WelcomeForm.css";
 import { Link } from "react-router-dom";
 // import PropTypes from "prop-types";
@@ -10,7 +11,7 @@ class WelcomeForm extends Component {
 			name: "",
 			email: "",
 			purpose: "",
-			error: "",
+			isLoggedIn: false,
 		};
 	}
 
@@ -20,32 +21,16 @@ class WelcomeForm extends Component {
 
 	handleSignIn = (event) => {
 		event.preventDefault();
-		if (
-			!this.state.name.length ||
-			!this.state.email.length ||
-			!this.state.purpose.length
-		) {
-			this.setState({ error: "Fill out everything" });
-		} else {
-			this.setState({ error: "" });
-		}
-
-		//something maybe passing in props??
-		// this.showErrorMessage()
-		// this.clearInputs();
+		this.setState({ isLoggedIn: true });
 	};
 
-	// clearInputs = () => {
-	//   this.setState({ name: "", email: "", value: "" });
-	// };
-
-	// showErrorMessage = () => {
-	//   return !this.state.email && <h4 className="sign-in-error">Please fill out all fields.</h4>
-	// }
-
 	render() {
+		if (this.state.isLoggedIn) {
+			return <Redirect to="/areas" />;
+		}
+
 		return (
-			<form>
+			<form onSubmit={(event) => this.handleSignIn(event)}>
 				<h3 className="sign-in-title">Welcome to VRAD!</h3>
 				<div className="sign-in-items">
 					<label>
@@ -67,6 +52,7 @@ class WelcomeForm extends Component {
 							name="email"
 							value={this.state.email}
 							onChange={(event) => this.handleChange(event)}
+							required
 						/>
 					</label>
 					<label>
@@ -74,21 +60,16 @@ class WelcomeForm extends Component {
 						<select
 							name="purpose"
 							value={this.state.purpose}
-							onChange={(event) => this.handleChange(event)}>
+							onChange={(event) => this.handleChange(event)}
+							required>
 							<option value="">--Select reason--</option>
 							<option value="business">Business</option>
 							<option value="vacation">Vacation</option>
 							<option value="other">Other</option>
 						</select>
 					</label>
-					<h4 className="sign-in-error">{this.state.error}</h4>
-					<button
-						type="submit"
-						className="sign-in-button"
-						onClick={(event) => this.handleSignIn(event)}>
-						<Link className="link" to="/areas">
-							Sign in
-						</Link>
+					<button type="submit" className="sign-in-button">
+						Sign in
 					</button>
 				</div>
 			</form>

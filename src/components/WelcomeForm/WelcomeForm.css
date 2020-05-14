@@ -1,4 +1,5 @@
 form {
+<<<<<<< HEAD
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -12,6 +13,19 @@ form {
 	/* margin-bottom: 4em; */
 	padding: 50px 100px;
 	width: 25em;
+=======
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 1em;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  margin: 4em 0;
+  padding: 50px 100px;
+  width: 25em;
+>>>>>>> master
 }
 
 .sign-in-items {
@@ -45,46 +59,33 @@ select {
 }
 
 .sign-in-button {
-	background: #ffa500;
-	border: none;
-	border-radius: 1em;
-	color: #808080;
-	cursor: pointer;
-	font-size: medium;
-	font-weight: 600;
-	letter-spacing: 3px;
-	margin-top: 4em;
-	padding: 20px 30px;
+  background: #ffa500;
+  border: none;
+  border-radius: 1em;
+  color: #808080;
+  cursor: pointer;
+  font-size: medium;
+  font-weight: 600;
+  letter-spacing: 3px;
+  margin-top: 4em;
+  padding: 20px 30px;
 }
 
 .sign-in-button:hover {
-	background: #ff8c00;
-	border-radius: 1em;
+  background: #ff8c00;
+  border-radius: 1em;
 }
 
 ::placeholder {
-	color: #808080;
-	font-size: small;
-	letter-spacing: 2px;
-	/* text-align: center; */
+  color: #808080;
+  font-size: small;
+  letter-spacing: 2px;
 }
 
 .sign-in-error {
-	color: #ff0000;
-	display: flex;
-	font-weight: 700;
-	justify-content: center;
-}
+  color: #ff0000;
+  display: flex;
+  font-weight: 700;
+  justify-content: center;
 
-.link {
-	background: #ffa500;
-	border: none;
-	border-radius: 1em;
-	color: #808080;
-	cursor: pointer;
-	font-size: medium;
-	font-weight: 600;
-	letter-spacing: 3px;
-	margin-top: 4em;
-	padding: 20px 30px;
 }
