@@ -2,22 +2,23 @@
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	flex-wrap: wrap;
+	/* flex-wrap: wrap; */
 	background-color: #fff;
 	border-radius: 1em;
-	display: flex;
-	flex-grow: 1;
+	/* display: flex; */
+	/* flex-grow: 1; */
 	justify-content: center;
-	margin: 2em 3em;
+	margin: 2em;
 	padding: 40px;
-	width: 300px;
+	height: 400px;
+	width: 350px;
 }
 
 .listing img {
-	width: 100%;
+	width: inherit;
 }
 
-.see-details-button {
+.listing-details-button {
 	background: #ffa500;
 	border: none;
 	border-radius: 1em;

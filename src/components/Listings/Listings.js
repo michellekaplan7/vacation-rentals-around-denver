@@ -19,6 +19,16 @@ class Listings extends Component {
 		}
 	}
 
+	componentDidUpdate() {
+		if (this.props.listings) {
+			if (this.state.listings.length === 0) {
+				this.fetchListingDetails(this.props.listings).then((listings) =>
+					this.setState({ listings })
+				);
+			}
+		}
+	}
+
 	fetchListingDetails = (listings) => {
 		const promises = listings.map((listing) => {
 			return fetch(this.state.url + listing)
@@ -40,14 +50,14 @@ class Listings extends Component {
 	};
 
 	render() {
-		let listingCards;
-		if (this.state.listings.length >= 0) {
-			listingCards = this.state.listings.map((listing, i) => {
-				return <Listing key={i} {...listing} />;
-			});
-			// } else {
-			// 	listingCards = "loading...";
-		}
+		console.log(this.props.listings);
+		console.log(this.state.listings);
+		let listingCards = this.state.listings.map((listing, i) => {
+			return <Listing key={i} {...listing} />;
+		});
+		// } else {
+		// 	listingCards = "loading...";
+
 		return (
 			<div className="listings">
 				{this.props.listings && (listingCards || "loading...")}

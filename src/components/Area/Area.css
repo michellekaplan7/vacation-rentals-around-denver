@@ -5,11 +5,11 @@
 	background-color: #fff;
 	border-radius: 1em;
 	display: flex;
-	flex-grow: 1;
+	/* flex-grow: 1; */
 	justify-content: center;
-	margin: 2em 7em;
+	margin: 2em 3em;
 	padding: 40px;
-	width: 20em;
+	width: 300px;
 }
 
 .see-listings-button {
