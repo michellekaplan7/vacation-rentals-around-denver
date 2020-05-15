@@ -4,39 +4,3 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
-
-.area {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: #fff;
-	border-radius: 1em;
-	display: flex;
-	flex-grow: 1;
-	justify-content: center;
-	margin: 2em 7em;
-	padding: 40px;
-	width: 20em;
-}
-
-.see-listings-button {
-	background: #ffa500;
-	border: none;
-	border-radius: 1em;
-	cursor: pointer;
-	font-size: medium;
-	font-weight: 600;
-	letter-spacing: 3px;
-	margin-top: 2em;
-	opacity: 0.5;
-	padding: 20px 30px;
-}
-
-.nickname {
-	color: #808080;
-	margin: 10px;
-}
-
-.location {
-	margin: 10px;
-}

@@ -1,18 +1,23 @@
-.area {
+.listing {
+	align-items: center;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	flex-wrap: wrap;
 	background-color: #fff;
 	border-radius: 1em;
 	display: flex;
 	flex-grow: 1;
 	justify-content: center;
-	margin: 2em 7em;
+	margin: 2em 3em;
 	padding: 40px;
-	width: 20em;
+	width: 300px;
 }
 
-.see-listings-button {
+.listing img {
+	width: 100%;
+}
+
+.see-details-button {
 	background: #ffa500;
 	border: none;
 	border-radius: 1em;
@@ -25,11 +30,7 @@
 	padding: 20px 30px;
 }
 
-.nickname {
+.listing-name {
 	color: #808080;
-	margin: 10px;
-}
-
-.location {
 	margin: 10px;
 }

@@ -25,35 +25,14 @@ class App extends Component {
 			return fetch(this.state.url + area.details)
 				.then((response) => response.json())
 				.then((details) => {
-					return Promise.resolve(
-						this.fetchListingDetails(details.listings).then((response) => {
-							return {
-								area: area.area,
-								details: area.details,
-								id: 590,
-								name: details.name,
-								location: details.location,
-								about: details.about,
-								region_code: details.region_code,
-								quick_search: details.quick_code,
-								// listings: details.listings,
-								listingInfo: response,
-							};
-						})
-					);
-				});
-		});
-		return Promise.all(promises);
-	};
-
-	fetchListingDetails = (listings) => {
-		const promises = listings.map((listing) => {
-			return fetch(this.state.url + listing)
-				.then((response) => response.json())
-				.then((info) => {
 					return {
-						url: listing,
-						...info,
+						area: area.area,
+						details: area.details,
+						id: details.id,
+						name: details.name,
+						location: details.location,
+						about: details.about,
+						listings: details.listings,
 					};
 				});
 		});
@@ -61,21 +40,25 @@ class App extends Component {
 	};
 
 	render() {
-		console.log(this.state.areas);
 		return (
 			<main className="app">
 				<Switch>
-					<Route exact path="/" render={() => <WelcomeForm />} />
+					{/* <Route path="areas/:id/listings/:id" render={() => <ListingDetails />} /> */}
+					<Route
+						path="/areas/:id/listings"
+						render={({ match }) => {
+							const areaId = Number(match.params.id);
+							const selectedArea = this.state.areas.find(
+								(area) => areaId === area.id
+							);
+							return <Listings match={match.params.id} {...selectedArea} />;
+						}}
+					/>
 					<Route
 						path="/areas"
 						render={() => <Areas areas={this.state.areas} />}
 					/>
-					<Route
-						path="areas/:id/listings/"
-						render={({ match }) => (
-							<Listings areas={this.state.areas[match.params.id]} />
-						)}
-					/>
+					{/* <Route exact path="/" render={() => <WelcomeForm />} /> */}
 				</Switch>
 			</main>
 		);

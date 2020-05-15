@@ -6,6 +6,7 @@ form {
 	border-radius: 1em;
 	display: flex;
 	flex-grow: 1;
+	height: 90vh;
 	justify-content: center;
 	margin: 4em 0;
 	padding: 50px 100px;

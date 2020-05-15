@@ -1,24 +1,13 @@
 import React from "react";
 import "./Areas.css";
 import PropTypes from "prop-types";
+import Area from "../Area/Area";
 
 const Areas = (props) => {
-	console.log(props);
-	const areaNames = props.areas.map((area, i) => {
-		return (
-			<div key={i} className={`area ${area.name.split(" ").join("-")}`}>
-				<h1>{area.name}</h1>
-				<h2 className="nickname">{area.area}</h2>
-				<h3 className="location">{area.location}</h3>
-				<p>{area.about}</p>
-				{/* <Link to={`areas/${area.id}/listings`}></Link> */}
-				<button className="see-listings-button">
-					See {area.area} Listings
-				</button>
-			</div>
-		);
+	const areaCards = props.areas.map((area, i) => {
+		return <Area key={i} {...area}></Area>;
 	});
-	return <div className="areas">{areaNames}</div>;
+	return <div className="areas">{areaCards}</div>;
 };
 
 export default Areas;
