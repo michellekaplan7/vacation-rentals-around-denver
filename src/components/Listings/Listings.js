@@ -10,22 +10,18 @@ class Listings extends Component {
 	};
 
 	componentDidMount() {
-		if (this.props.listings) {
-			if (this.state.listings.length === 0) {
-				this.fetchListingDetails(this.props.listings).then((listings) =>
-					this.setState({ listings })
-				);
-			}
+		if (this.props.listings && this.state.listings.length === 0) {
+			this.fetchListingDetails(this.props.listings).then((listings) =>
+				this.setState({ listings })
+			);
 		}
 	}
 
 	componentDidUpdate() {
-		if (this.props.listings) {
-			if (this.state.listings.length === 0) {
-				this.fetchListingDetails(this.props.listings).then((listings) =>
-					this.setState({ listings })
-				);
-			}
+		if (this.props.listings && this.state.listings.length === 0) {
+			this.fetchListingDetails(this.props.listings).then((listings) =>
+				this.setState({ listings })
+			);
 		}
 	}
 
@@ -50,19 +46,18 @@ class Listings extends Component {
 	};
 
 	render() {
-		console.log(this.props.listings);
-		console.log(this.state.listings);
 		let listingCards = this.state.listings.map((listing, i) => {
-			return <Listing key={i} {...listing} />;
+			return (
+				<Listing
+					key={i}
+					{...listing}
+					areaId={this.props.id}
+					selectListing={this.props.selectListing}
+				/>
+			);
 		});
-		// } else {
-		// 	listingCards = "loading...";
 
-		return (
-			<div className="listings">
-				{this.props.listings && (listingCards || "loading...")}
-			</div>
-		);
+		return <div className="listings">{listingCards}</div>;
 	}
 }
 

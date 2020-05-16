@@ -5,11 +5,13 @@ import "./App.css";
 import Areas from "../Areas/Areas";
 import WelcomeForm from "../WelcomeForm/WelcomeForm";
 import Listings from "../Listings/Listings";
+import ListingDetails from "../ListingDetails/ListingDetails";
 
 class App extends Component {
 	state = {
 		url: "https://vrad-api.herokuapp.com",
 		areas: [],
+		selectedListing: {},
 	};
 
 	componentDidMount() {
@@ -39,11 +41,26 @@ class App extends Component {
 		return Promise.all(promises);
 	};
 
+	selectListing = (selectedListing) => {
+		this.setState({ selectedListing });
+	};
+
 	render() {
+		console.log(this.state.selectedListing);
 		return (
 			<main className="app">
 				<Switch>
-					{/* <Route path="areas/:id/listings/:id" render={() => <ListingDetails />} /> */}
+					<Route
+						path="areas/:id/listings/:listingId"
+						render={({ match }) => {
+							console.log(match.params);
+							const listingId = Number(match.params.listingId);
+							const listing = this.state.areas.listings;
+							return (
+								<ListingDetails selectedListing={this.state.selectedListing} />
+							);
+						}}
+					/>
 					<Route
 						path="/areas/:id/listings"
 						render={({ match }) => {
@@ -51,10 +68,17 @@ class App extends Component {
 							const selectedArea = this.state.areas.find(
 								(area) => areaId === area.id
 							);
-							return <Listings match={match.params.id} {...selectedArea} />;
+							return (
+								<Listings
+									match={match.params.id}
+									{...selectedArea}
+									selectListing={this.selectListing}
+								/>
+							);
 						}}
 					/>
 					<Route
+						exact
 						path="/areas"
 						render={() => <Areas areas={this.state.areas} />}
 					/>

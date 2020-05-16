@@ -10,8 +10,8 @@
 	justify-content: center;
 	margin: 2em;
 	padding: 40px;
-	height: 400px;
-	width: 350px;
+	height: 550px;
+	width: 400px;
 }
 
 .listing img {
@@ -32,6 +32,10 @@
 }
 
 .listing-name {
+	/* margin-bottom: 10px; */
+}
+
+.cost {
 	color: #808080;
 	margin: 10px;
 }
