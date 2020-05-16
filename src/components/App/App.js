@@ -51,11 +51,9 @@ class App extends Component {
 			<main className="app">
 				<Switch>
 					<Route
-						path="areas/:id/listings/:listingId"
+						path="/areas/:id/listings/:listingId"
 						render={({ match }) => {
-							console.log(match.params);
-							const listingId = Number(match.params.listingId);
-							const listing = this.state.areas.listings;
+							console.log(this.state.selectedListing);
 							return (
 								<ListingDetails selectedListing={this.state.selectedListing} />
 							);

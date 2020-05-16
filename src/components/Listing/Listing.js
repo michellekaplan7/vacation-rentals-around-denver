@@ -12,7 +12,7 @@ const Listing = (props) => {
 			<h2 className="cost">{`$${props.cost_per_night} a night`}</h2>
 			<Link
 				className="listing-details-button"
-				to={`areas/${props.areaId}/listings/3`}
+				to={`/areas/${props.areaId}/listings/${props.listing_id}`}
 				onClick={(e) => {
 					if (props) {
 						props.selectListing(props);
