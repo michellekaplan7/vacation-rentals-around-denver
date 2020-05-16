@@ -10,6 +10,7 @@ import Header from "../Header/Header";
 
 class App extends Component {
 	state = {
+		userInfo: {},
 		// username: ,
 		// purpose: ,
 		url: "https://vrad-api.herokuapp.com",
@@ -48,12 +49,12 @@ class App extends Component {
 		this.setState({ selectedListing });
 	};
 
-	// handleSignIn(userInfo) {
-	// 	this.setState({userInfo})
-	// }
-
+	handleUserInfo = (userInfo) => {
+		this.setState({ userInfo });
+	};
+	
 	render() {
-		console.log(this.state.selectedListing);
+		console.log(this.state.userInfo);
 		return (
 			<main className="app">
 				<Switch>
@@ -62,8 +63,10 @@ class App extends Component {
 						render={({ match }) => {
 							console.log(this.state.selectedListing);
 							return (
-								// <Header userInfo={...this.state.userInfo} />
+								<div>
+								<Header userInfo={this.state.userInfo} />
 								<ListingDetails selectedListing={this.state.selectedListing} />
+								</div>
 							);
 						}}
 					/>
@@ -75,20 +78,30 @@ class App extends Component {
 								(area) => areaId === area.id
 							);
 							return (
+								<div>
+								<Header userInfo={this.state.userInfo} />
 								<Listings
 									match={match.params.id}
 									{...selectedArea}
 									selectListing={this.selectListing}
 								/>
+								</div>
 							);
 						}}
 					/>
 					<Route
 						exact
 						path="/areas"
-						render={() => <Areas areas={this.state.areas} />}
+						render={() => {
+							return (
+							<div>
+							<Header userInfo={this.state.userInfo} />
+							<Areas areas={this.state.areas} />
+							</div>
+							)
+						}}
 					/>
-					{/* <Route exact path="/" render={() => <WelcomeForm />} /> */}
+					<Route exact path="/" render={() => <WelcomeForm handleUserInfo={this.handleUserInfo}/>} />
 				</Switch>
 			</main>
 		);

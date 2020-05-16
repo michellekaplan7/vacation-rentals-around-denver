@@ -22,18 +22,19 @@ class WelcomeForm extends Component {
 	handleSignIn = (event) => {
 		event.preventDefault();
 		this.setState({ isLoggedIn: true });
+		this.props.handleUserInfo({...this.state})
 	};
 
 	render() {
 		if (this.state.isLoggedIn) {
 			return <Redirect to="/areas" />;
 		}
-
+		console.log(this.state.isLoggedIn)
 		return (
 			<form
 				onSubmit={(event) => {
 					this.handleSignIn(event);
-					// signin method from app that sets user state
+					// this.props.handleUserInfo({...this.state})
 				}}>
 				<h3 className="sign-in-title">Welcome to VRAD!</h3>
 				<div className="sign-in-items">
