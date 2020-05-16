@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const Listing = (props) => {
 	const pic1 = `/images/${props.listing_id}_a.jpg`;
-	// console.log(props.);
 	return (
 		<div className="listing">
 			<h2 className="listing-name">{props.name}</h2>
@@ -12,7 +11,7 @@ const Listing = (props) => {
 			<h2 className="cost">{`$${props.cost_per_night} a night`}</h2>
 			<Link
 				className="listing-details-button"
-				to={`areas/${props.areaId}/listings/3`}
+				to={`/areas/${props.areaId}/listings/${props.listing_id}`}
 				onClick={(e) => {
 					if (props) {
 						props.selectListing(props);

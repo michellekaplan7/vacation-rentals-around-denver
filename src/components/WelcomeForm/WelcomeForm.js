@@ -30,7 +30,11 @@ class WelcomeForm extends Component {
 		}
 
 		return (
-			<form onSubmit={(event) => this.handleSignIn(event)}>
+			<form
+				onSubmit={(event) => {
+					this.handleSignIn(event);
+					// signin method from app that sets user state
+				}}>
 				<h3 className="sign-in-title">Welcome to VRAD!</h3>
 				<div className="sign-in-items">
 					<label>
