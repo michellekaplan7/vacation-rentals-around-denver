@@ -1,18 +1,17 @@
 import React from "react";
-import WelcomeForm from "./WelcomeForm";
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
-import { render, fireEvent } from "@testing-library/react";
+import App from "../App/App"
+import { MemoryRouter } from "react-router-dom";
+import { render } from "@testing-library/react";
 import "@testing-library/jest-dom/";
 
 describe("WelcomeForm", () => {
   it("renders the correct information", () => {
-    const history = createMemoryHistory();
-    const { getByText, getByLabelText, getByPlaceholderText } = render(
-      <Router history={history}>
-        <WelcomeForm />
-      </Router>
-    );
+    const router = (
+      <MemoryRouter initialEntries={["/"]}>
+          <App />
+      </MemoryRouter>
+  );
+  const { getByText, getByLabelText, getByPlaceholderText } = render(router);
 
     const nameLabel = getByLabelText("Please enter your name:");
     const emailLabel = getByLabelText("Please enter your email:");
@@ -28,7 +27,5 @@ describe("WelcomeForm", () => {
     expect(namePlaceholderText).toBeInTheDocument();
     expect(emailPlaceholderText).toBeInTheDocument();
     expect(signInButtonText).toBeInTheDocument();
-
-    fireEvent.click(getByText("Sign in"));
   });
 });
