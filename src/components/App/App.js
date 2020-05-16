@@ -6,9 +6,12 @@ import Areas from "../Areas/Areas";
 import WelcomeForm from "../WelcomeForm/WelcomeForm";
 import Listings from "../Listings/Listings";
 import ListingDetails from "../ListingDetails/ListingDetails";
+import Header from "../Header/Header";
 
 class App extends Component {
 	state = {
+		// username: ,
+		// purpose: ,
 		url: "https://vrad-api.herokuapp.com",
 		areas: [],
 		selectedListing: {},
@@ -45,6 +48,10 @@ class App extends Component {
 		this.setState({ selectedListing });
 	};
 
+	// handleSignIn(userInfo) {
+	// 	this.setState({userInfo})
+	// }
+
 	render() {
 		console.log(this.state.selectedListing);
 		return (
@@ -55,6 +62,7 @@ class App extends Component {
 						render={({ match }) => {
 							console.log(this.state.selectedListing);
 							return (
+								// <Header userInfo={...this.state.userInfo} />
 								<ListingDetails selectedListing={this.state.selectedListing} />
 							);
 						}}

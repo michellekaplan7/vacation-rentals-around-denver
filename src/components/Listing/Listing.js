@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const Listing = (props) => {
 	const pic1 = `/images/${props.listing_id}_a.jpg`;
-	// console.log(props.);
 	return (
 		<div className="listing">
 			<h2 className="listing-name">{props.name}</h2>
