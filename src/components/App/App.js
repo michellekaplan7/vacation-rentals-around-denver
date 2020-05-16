@@ -53,17 +53,15 @@ class App extends Component {
 	// }
 
 	render() {
-		console.log(this.state.selectedListing);
 		return (
 			<main className="app">
 				<Switch>
 					<Route
 						path="/areas/:id/listings/:listingId"
 						render={({ match }) => {
-							console.log(this.state.selectedListing);
 							return (
 								// <Header userInfo={...this.state.userInfo} />
-								<ListingDetails selectedListing={this.state.selectedListing} />
+								<ListingDetails {...this.state.selectedListing} />
 							);
 						}}
 					/>
