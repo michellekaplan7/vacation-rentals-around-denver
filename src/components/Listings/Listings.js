@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Listings.css";
 import PropTypes from "prop-types";
 import Listing from "../Listing/Listing";
+import { Link } from "react-router-dom";
 
 class Listings extends Component {
 	state = {
@@ -17,12 +18,20 @@ class Listings extends Component {
 		}
 	}
 
-	componentDidUpdate() {
-		if (this.props.listings && this.state.listings.length === 0) {
+	/* displayName = () => {
+		console.log(props.name)
+	} */
+
+	componentDidUpdate(prevProps) {
+		if (this.props.listings !== prevProps.listings) {
 			this.fetchListingDetails(this.props.listings).then((listings) =>
 				this.setState({ listings })
 			);
 		}
+	}
+
+	componentWillUnmount() {
+		this.setState({ listings: null });
 	}
 
 	fetchListingDetails = (listings) => {
@@ -48,16 +57,27 @@ class Listings extends Component {
 	render() {
 		let listingCards = this.state.listings.map((listing, i) => {
 			return (
-				<Listing
-					key={i}
-					{...listing}
-					areaId={this.props.id}
-					selectListing={this.props.selectListing}
-				/>
+				<div>
+					<Listing
+						key={i}
+						{...listing}
+						areaId={this.props.id}
+						selectListing={this.props.selectListing}
+					/>
+				</div>
 			);
 		});
 
-		return <div className="listings">{listingCards}</div>;
+		return (
+			<div>
+				<div className="listings">{listingCards}</div>
+				<div className="bottom">
+					<Link className="back-to-areas-button" to="/areas">
+						Back to Areas
+					</Link>
+				</div>
+			</div>
+		);
 	}
 }
 
