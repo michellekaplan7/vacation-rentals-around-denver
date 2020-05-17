@@ -63,6 +63,7 @@ class WelcomeForm extends Component {
 					<label>
 						Please select your reason for visiting:
 						<select
+							// role="combobox"
 							name="purpose"
 							value={this.state.purpose}
 							onChange={(event) => this.handleChange(event)}
