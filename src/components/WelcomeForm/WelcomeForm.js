@@ -36,7 +36,6 @@ class WelcomeForm extends Component {
     if (this.state.isLoggedIn) {
       return <Redirect to="/areas" />;
     }
-    console.log(this.state.isLoggedIn);
     return (
       <form
         onSubmit={(event) => {
