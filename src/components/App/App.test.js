@@ -26,15 +26,15 @@ describe("App", () => {
                     <App />
                 </MemoryRouter>
             );
-            const { getByRole, getByText, getByDisplayValue, getByPlaceholderText } = render(router);
+            const { getByRole, getByText, getByPlaceholderText } = render(router);
             const signInLink = getByRole("button", {name: "Sign in"});
             const namePlaceholderText = getByPlaceholderText("Name");
             const emailPlaceholderText = getByPlaceholderText("Email");
-            const purposeSelect = getByRole("option");
+            const purposeSelect = getByRole("combobox");
             
 
             expect(signInLink).toBeInTheDocument();
-                console.log("purposeselect", purposeSelect)
+
             fireEvent.change(namePlaceholderText, {target: {value: "Elliot"}})
             fireEvent.change(emailPlaceholderText, {target: {value: "Elliot@gmail.com"}})
             fireEvent.change(purposeSelect, {target: {value: "business"}})
@@ -43,7 +43,36 @@ describe("App", () => {
             
             expect(getByText("Welcome Elliot")).toBeInTheDocument();
             expect(getByText("Your purpose for booking with us is: business")).toBeInTheDocument();
+            
         });
 
-    })
+        // it("should not render Areas if there is a field not filled out from WelcomeForm", () =>  {
+            
+
+        //     const router = (
+        //         <MemoryRouter initialEntries={["/"]}>
+        //             <App />
+        //         </MemoryRouter>
+        //     );
+        //     const { getByRole, getByText, getByPlaceholderText, getAllByText } = render(router);
+        //     const signInLink = getByRole("button", {name: "Sign in"});
+        //     const namePlaceholderText = getByPlaceholderText("Name");
+        //     const emailPlaceholderText = getByPlaceholderText("Email");
+        //     const purposeSelect = getByRole("combobox");
+            
+
+        //     expect(signInLink).toBeInTheDocument();
+
+        //     fireEvent.change(namePlaceholderText, {target: {value: ""}})
+        //     fireEvent.change(emailPlaceholderText, {target: {value: "Elliot@gmail.com"}})
+        //     fireEvent.change(purposeSelect, {target: {value: "business"}})
+
+        //     fireEvent.click(signInLink);
+            
+        //     expect(getAllByText("Welcome Elliot")).toHaveLength(0);
+        // });
+
+        
+
+    });
 })

@@ -21,8 +21,12 @@ class WelcomeForm extends Component {
 
 	handleSignIn = (event) => {
 		event.preventDefault();
-		this.setState({ isLoggedIn: true });
-		this.props.handleUserInfo({...this.state})
+		if(!this.state.name.length || !this.state.email.length || !this.state.purpose.length) {
+			return
+		}
+		this.setState({ isLoggedIn: true }, () => {
+			this.props.handleUserInfo({...this.state})
+		});
 	};
 
 	render() {
@@ -63,7 +67,6 @@ class WelcomeForm extends Component {
 					<label>
 						Please select your reason for visiting:
 						<select
-							// role="combobox"
 							name="purpose"
 							value={this.state.purpose}
 							onChange={(event) => this.handleChange(event)}
