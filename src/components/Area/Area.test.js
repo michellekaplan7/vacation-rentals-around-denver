@@ -16,11 +16,11 @@ describe("Area", () => {
     name: "Arvada",
   };
 
-  const mockListing = {
-            name: "Olde Town Loft",
-            img: "Olde Town Loft",
-            cost_per_night: "250 a night",
-        };
+  // const mockListing = {
+  //           name: "Olde Town Loft",
+  //           img: "Olde Town Loft",
+  //           cost_per_night: "250 a night",
+  //       };
 
   it("displays correct information on the Area card", () => {
     const history = createMemoryHistory();
@@ -31,33 +31,26 @@ describe("Area", () => {
     );
 
     expect(getByText("Rad Arvad")).toBeInTheDocument();
-    expect(
-      getByText("Arvada is a rad little town just northwest of Denver.")
-    ).toBeInTheDocument();
+    expect(getByText("Arvada is a rad little town just northwest of Denver.")).toBeInTheDocument();
     expect(getByText("Northwest of Downtown Denver")).toBeInTheDocument();
     expect(getByText("Arvada")).toBeInTheDocument();
     expect(getByText("See Rad Arvad Listings")).toBeInTheDocument();
+  });
 
-    
-});
+  it("should render the listings page for an area upon clicking the link on the card", () => {
+    const history = createMemoryHistory();
+    const { getByText } = render(
+      <Router history={history}>
+        <Area {...mockAreaInfo} />
+      </Router>
+    );
 
-it.only("should render the listings page for an area upon clicking the link on the card", () =>  {
-  const history = createMemoryHistory();
-  const { getByText } = render(
-    <Router history={history}>
-      <Area {...mockAreaInfo} />
-    </Router>
-  );
+    const seeAreaListingsLink = getByText("See Rad Arvad Listings");
 
-  const seeAreaListingsLink = getByText("See Rad Arvad Listings");
+    expect(seeAreaListingsLink).toBeInTheDocument();
 
-  expect(seeAreaListingsLink).toBeInTheDocument();
+    fireEvent.click(seeAreaListingsLink);
 
-  // fireEvent.click(seeAreaListingsLink);
-
-  // expect(getByText("Olde Town Loft")).toBeInTheDocument();
-  // expect(getByAltText("Olde Town Loft")).toBeInTheDocument();
-});
-
-
+    expect(history.location.pathname).toBe('/areas/1/listings');
+  });
 });
