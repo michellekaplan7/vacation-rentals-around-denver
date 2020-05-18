@@ -4,3 +4,21 @@
 	flex-wrap: wrap;
 	justify-content: flex-start;
 }
+
+.back-to-areas-button {
+	background: #ffa500;
+	border: none;
+	cursor: pointer;
+	display: block;
+	font-size: medium;
+	font-weight: 600;
+	letter-spacing: 3px;
+	opacity: 0.5;
+	padding: 20px 30px;
+	width: 100%;
+}
+
+.bottom {
+	background-color: white;
+	text-align: center;
+}

@@ -52,20 +52,18 @@ class App extends Component {
 	handleUserInfo = (userInfo) => {
 		this.setState({ userInfo });
 	};
-	
+
 	render() {
-		console.log(this.state.userInfo);
 		return (
 			<main className="app">
 				<Switch>
 					<Route
 						path="/areas/:id/listings/:listingId"
 						render={({ match }) => {
-							console.log(this.state.selectedListing);
 							return (
 								<div>
-								<Header userInfo={this.state.userInfo} />
-								<ListingDetails selectedListing={this.state.selectedListing} />
+									<Header userInfo={this.state.userInfo} />
+									<ListingDetails {...this.state.selectedListing} />
 								</div>
 							);
 						}}
@@ -79,12 +77,12 @@ class App extends Component {
 							);
 							return (
 								<div>
-								<Header userInfo={this.state.userInfo} />
-								<Listings
-									match={match.params.id}
-									{...selectedArea}
-									selectListing={this.selectListing}
-								/>
+									<Header userInfo={this.state.userInfo} />
+									<Listings
+										match={match.params.id}
+										{...selectedArea}
+										selectListing={this.selectListing}
+									/>
 								</div>
 							);
 						}}
@@ -94,14 +92,18 @@ class App extends Component {
 						path="/areas"
 						render={() => {
 							return (
-							<div>
-							<Header userInfo={this.state.userInfo} />
-							<Areas areas={this.state.areas} />
-							</div>
-							)
+								<div>
+									<Header userInfo={this.state.userInfo} />
+									<Areas areas={this.state.areas} />
+								</div>
+							);
 						}}
 					/>
-					<Route exact path="/" render={() => <WelcomeForm handleUserInfo={this.handleUserInfo}/>} />
+					<Route
+						exact
+						path="/"
+						render={() => <WelcomeForm handleUserInfo={this.handleUserInfo} />}
+					/>
 				</Switch>
 			</main>
 		);
