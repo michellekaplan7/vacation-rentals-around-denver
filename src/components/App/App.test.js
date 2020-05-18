@@ -78,7 +78,7 @@ describe("App", () => {
 		});
 
 		// it("should render the listings page for an area upon clicking the link on the card", () => {
-		// 	// const history = createMemoryHistory();
+		// const history = createMemoryHistory();
 		// 	const { getByText } = render(
 		// 		<MemoryRouter>
 		// 			<Area {...mockAreaInfo} />

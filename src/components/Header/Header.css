@@ -1,15 +1,18 @@
 nav {
-    height: 5em;
-    display: flex;
-    flex-direction: column;
-    background-color: #FFF;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 2px solid black;
+	height: 5em;
+	display: flex;
+	flex-direction: row;
+	background-color: #fff;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid black;
+	padding: 0px 30px;
 }
 
-.sign-out-link-container {
-    align-self: flex-end;
+.greeting {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .sign-out-button {
@@ -21,13 +24,11 @@ nav {
 	font-size: medium;
 	font-weight: 600;
 	letter-spacing: 3px;
-	margin-top: 4em;
-    padding: 20px 30px;
-    text-decoration: none;
+	padding: 20px 30px;
+	text-decoration: none;
 }
 
 .sign-out-button:hover {
 	background: #ff8c00;
 	border-radius: 1em;
 }
-  
