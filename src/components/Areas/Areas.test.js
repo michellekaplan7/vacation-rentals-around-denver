@@ -38,4 +38,5 @@ describe("Areas", () => {
     expect(areaLocation1).toBeInTheDocument();
     expect(areaLocation2).toBeInTheDocument();
   });
+
 });

@@ -1,7 +1,8 @@
 import React from "react";
 import Area from "./Area";
+import App from "../App/App";
 import Listings from "../Listings/Listings";
-import { Router } from "react-router-dom";
+import { Router, MemoryRouter } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { render, fireEvent, getByAltText } from "@testing-library/react";
 import "@testing-library/jest-dom/";
@@ -15,6 +16,12 @@ describe("Area", () => {
     name: "Arvada",
   };
 
+  // const mockListing = {
+  //           name: "Olde Town Loft",
+  //           img: "Olde Town Loft",
+  //           cost_per_night: "250 a night",
+  //       };
+
   it("displays correct information on the Area card", () => {
     const history = createMemoryHistory();
     const { getByText } = render(
@@ -24,33 +31,26 @@ describe("Area", () => {
     );
 
     expect(getByText("Rad Arvad")).toBeInTheDocument();
-    expect(
-      getByText("Arvada is a rad little town just northwest of Denver.")
-    ).toBeInTheDocument();
+    expect(getByText("Arvada is a rad little town just northwest of Denver.")).toBeInTheDocument();
     expect(getByText("Northwest of Downtown Denver")).toBeInTheDocument();
     expect(getByText("Arvada")).toBeInTheDocument();
     expect(getByText("See Rad Arvad Listings")).toBeInTheDocument();
+  });
 
-    fireEvent.click(getByText("See Rad Arvad Listings"));
+  it("should render the listings page for an area upon clicking the link on the card", () => {
+    const history = createMemoryHistory();
+    const { getByText } = render(
+      <Router history={history}>
+        <Area {...mockAreaInfo} />
+      </Router>
+    );
 
-    
-});
+    const seeAreaListingsLink = getByText("See Rad Arvad Listings");
 
-// it("links to the listings page upon clicking the link", () => {
-//     const mockListing = {
-//         name: "Olde Town Loft",
-//         img: "Olde Town Loft",
-//         cost_per_night: "250 a night",
-//     };
-    
-//     const history = createMemoryHistory();
-//     const { getByText, getByAltText } = render(
-//         <Router history={history}>
-//         <Listings {...mockListing} />
-//       </Router>
-//     );
+    expect(seeAreaListingsLink).toBeInTheDocument();
 
-//     expect(getByText("Olde Town Loft")).toBeInTheDocument();
-//     expect(getByAltText("Olde Town Loft")).toBeInTheDocument();
-//   });
+    fireEvent.click(seeAreaListingsLink);
+
+    expect(history.location.pathname).toBe('/areas/1/listings');
+  });
 });
