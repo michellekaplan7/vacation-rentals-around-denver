@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import { getAreas } from "../../apiCalls";
 import "./App.css";
 
 import Areas from "../Areas/Areas";
@@ -11,17 +12,13 @@ import Header from "../Header/Header";
 class App extends Component {
 	state = {
 		userInfo: {},
-		// username: ,
-		// purpose: ,
 		url: "https://vrad-api.herokuapp.com",
 		areas: [],
 		selectedListing: {},
 	};
 
 	componentDidMount() {
-		fetch("https://vrad-api.herokuapp.com/api/v1/areas")
-			.then((response) => response.json())
-			.then((data) => this.fetchAreaDetails(data.areas))
+		getAreas()
 			.then((areas) => this.setState({ areas }))
 			.catch((err) => console.log(err));
 	}
