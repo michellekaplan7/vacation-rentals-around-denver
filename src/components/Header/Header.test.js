@@ -1,50 +1,50 @@
 import React from "react";
 import Header from "./Header";
-import { Router, BrowserRouter, MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/";
 
 describe("Header", () => {
-	it("renders the correct information in the Header from the Welcome Form", () => {
-		const { getByText } = render(
-			<BrowserRouter>
-				<Header
-					userInfo={{
-						name: "Michelle",
-						purpose: "vacation",
-					}}
-				/>
-			</BrowserRouter>
-		);
+  it("renders the correct information in the Header from the Welcome Form", () => {
+    const { getByText } = render(
+      <BrowserRouter>
+        <Header
+          userInfo={{
+            name: "Michelle",
+            purpose: "vacation",
+          }}
+        />
+      </BrowserRouter>
+    );
 
-		const welcomeUserName = getByText("Welcome Michelle");
-		const welcomeUserPurpose = getByText(
-			"Your purpose for booking with us is: vacation"
-		);
+    const welcomeUserName = getByText("Welcome Michelle");
+    const welcomeUserPurpose = getByText(
+      "Your purpose for booking with us is: vacation"
+    );
 
-		expect(welcomeUserName).toBeInTheDocument();
-		expect(welcomeUserPurpose).toBeInTheDocument();
-	});
+    expect(welcomeUserName).toBeInTheDocument();
+    expect(welcomeUserPurpose).toBeInTheDocument();
+  });
 
-	it("goes back to the welcome form page when you click log out", () => {
-		const history = createMemoryHistory();
-		const { getByText } = render(
-			<BrowserRouter>
-				<Header
-					userInfo={{
-						name: "Michelle",
-						purpose: "vacation",
-					}}
-				/>
-			</BrowserRouter>
-		);
-		const signOutButton = getByText("Sign Out");
+  it("goes back to the welcome form page when you click log out", () => {
+    const history = createMemoryHistory();
+    const { getByText } = render(
+      <BrowserRouter>
+        <Header
+          userInfo={{
+            name: "Michelle",
+            purpose: "vacation",
+          }}
+        />
+      </BrowserRouter>
+    );
+    const signOutButton = getByText("Sign Out");
 
-		expect(signOutButton).toBeInTheDocument();
+    expect(signOutButton).toBeInTheDocument();
 
-		fireEvent.click(signOutButton);
+    fireEvent.click(signOutButton);
 
-		expect(history.location.pathname).toBe("/");
-	});
+    expect(history.location.pathname).toBe("/");
+  });
 });

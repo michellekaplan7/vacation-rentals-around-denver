@@ -14,6 +14,7 @@ class Listings extends Component {
 	componentDidMount = async () => {
 		if (this.props.listings && this.state.listings.length === 0) {
 			const listings = await fetchListingDetails(this.props.listings);
+
 			this.setState({ listings });
 		}
 		if (this.props.favorites) {
