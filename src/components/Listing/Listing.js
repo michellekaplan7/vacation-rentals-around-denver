@@ -1,5 +1,6 @@
 import React from "react";
 import "./Listing.css";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const Listing = (props) => {
@@ -22,5 +23,13 @@ const Listing = (props) => {
 		</div>
 	);
 };
+
+Listing.propTypes = {
+	listing_id: PropTypes.number.isRequired,
+	name: PropTypes.string.isRequired,
+	cost_per_night: PropTypes.number.isRequired,
+	areaId: PropTypes.number.isRequired,
+	selectListing: PropTypes.func.isRequired
+  };
 
 export default Listing;

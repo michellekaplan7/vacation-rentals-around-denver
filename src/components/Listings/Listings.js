@@ -14,6 +14,7 @@ class Listings extends Component {
 	componentDidMount = async () => {
 		if (this.props.listings && this.state.listings.length === 0) {
 			const listings = await fetchListingDetails(this.props.listings);
+
 			this.setState({ listings });
 		}
 		if (this.props.favorites) {
@@ -56,5 +57,17 @@ class Listings extends Component {
 		);
 	}
 }
+
+Listings.propTypes = {
+	about: PropTypes.string.isRequired,
+	area: PropTypes.string.isRequired,
+	details: PropTypes.string.isRequired,
+	id: PropTypes.number.isRequired,
+	listings: PropTypes.array.isRequired,
+	location: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	selectListing: PropTypes.func.isRequired,
+	match: PropTypes.string.isRequired
+  };
 
 export default Listings;

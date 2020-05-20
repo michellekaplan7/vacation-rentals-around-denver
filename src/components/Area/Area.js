@@ -3,7 +3,7 @@ import "./Area.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const Area = ({ area, about, details, id, location, name }) => {
+const Area = ({ area, about, id, location, name }) => {
 	return (
 		<div className="area">
 			<h1>{name}</h1>
@@ -16,5 +16,13 @@ const Area = ({ area, about, details, id, location, name }) => {
 		</div>
 	);
 };
+
+Area.propTypes = {
+	area: PropTypes.string.isRequired,  
+	about: PropTypes.string.isRequired,
+	id: PropTypes.number.isRequired,
+	location: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired
+  };
 
 export default Area;

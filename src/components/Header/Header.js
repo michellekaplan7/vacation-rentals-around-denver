@@ -24,4 +24,8 @@ const Header = (props) => {
 	);
 };
 
+Header.propTypes = {
+	userInfo: PropTypes.object.isRequired,
+};
+
 export default Header;

@@ -10,4 +10,8 @@ const Areas = (props) => {
 	return <div className="areas">{areaCards}</div>;
 };
 
+Areas.propTypes = {
+	areas: PropTypes.array.isRequired,
+  };
+
 export default Areas;
