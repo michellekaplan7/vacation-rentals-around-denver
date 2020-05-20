@@ -1,10 +1,21 @@
 # Vactation Rentals Around Denver (VRAD)
 
-A foodie website for users to view & save recipes, as well as look at their food items to see if they are able to if verify if ingredients are in stock to cook the meal of their choice.
+A vacation rentals app that shows the user areas and listings around Denver
+
+## Goals and Objectives
+
+- Keep state based components to a minimum and leverage more functional components
+- Use a modular architecture for your application file structure
+- Think deeply about React Lifecycle Methods
+- Become familiar with promises, nested fetch requests, and handling the UI based on acceptance of data
+- Become familiar with routing and how to handle dynamic routes
+- Use propTypes for every component receiving props
+- Write tests for React components and some asynchronous functionality
 
 ## Gif of working Website
 
-![Alt Text]()
+![vrad_login](https://media.giphy.com/media/TIdgKm8JR9KygEKXi0/giphy.gif)
+![vrad_navigation](https://media.giphy.com/media/SULFoqtp5Cb1ermG8m/giphy.gif)
 
 ## Setup
 
@@ -25,10 +36,10 @@ npm install
 - JavaScript
 
 ## Future Iterations
-<!-- - Implement a clear search button to bring back all of the news articles for that news category without having to re-click on the news category button
-- Add an error message for any search queries that don't match any news articles
+- Implement favoriting/unfavoriting a listing functionality (this would include implementing a /favorites route that displays only the favorited cards, error handling if there are no favorites)
 - Build out media queries for mobile responsiveness
-- Fix image sizing -->
+- Have user and favorites data persist in localStorage
+- Interactive map of listings
 
 ## Contributors:
 
