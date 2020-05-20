@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
+import MdHeart from "react-ionicons/lib/MdHeart";
 import "./ListingDetails.css";
 
 const ListingDetails = ({
@@ -44,6 +45,13 @@ const ListingDetails = ({
 				to={`/areas/${areaId}/listings`}>
 				Back to Listings
 			</Link>
+			<p className="favorites-button-label">Click to add to your Favorites</p>
+			<MdHeart
+				onClick={(e) => e.target.setAttribute("fill", "red")}
+				fontSize="60px"
+				color="grey"
+				beat={true}
+			/>
 		</div>
 	);
 };

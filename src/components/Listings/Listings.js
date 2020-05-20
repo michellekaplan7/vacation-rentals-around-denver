@@ -3,6 +3,7 @@ import "./Listings.css";
 import PropTypes from "prop-types";
 import Listing from "../Listing/Listing";
 import { Link } from "react-router-dom";
+import { fetchListingDetails } from "../../apiCalls";
 
 class Listings extends Component {
 	state = {
@@ -10,61 +11,36 @@ class Listings extends Component {
 		listings: [],
 	};
 
-	componentDidMount() {
+	componentDidMount = async () => {
 		if (this.props.listings && this.state.listings.length === 0) {
-			this.fetchListingDetails(this.props.listings).then((listings) =>
-				this.setState({ listings })
-			);
+			const listings = await fetchListingDetails(this.props.listings);
+			this.setState({ listings });
 		}
-	}
+		if (this.props.favorites) {
+			this.setState({ listings: this.props.favorites });
+		}
+	};
 
-	/* displayName = () => {
-		console.log(props.name)
-	} */
-
-	componentDidUpdate(prevProps) {
+	componentDidUpdate = async (prevProps) => {
 		if (this.props.listings !== prevProps.listings) {
-			this.fetchListingDetails(this.props.listings).then((listings) =>
-				this.setState({ listings })
-			);
+			const listings = await fetchListingDetails(this.props.listings);
+			this.setState({ listings });
 		}
-	}
+	};
 
 	componentWillUnmount() {
 		this.setState({ listings: null });
 	}
 
-	fetchListingDetails = (listings) => {
-		const promises = listings.map((listing) => {
-			return fetch(this.state.url + listing)
-				.then((response) => response.json())
-				.then((info) => {
-					return {
-						listing_id: info.listing_id,
-						name: info.name,
-						address: `${info.address.street}, ${info.address.zip}`,
-						superhost: info.details.superhost,
-						beds: info.details.beds,
-						baths: info.details.baths,
-						cost_per_night: info.details.cost_per_night,
-						features: info.details.features,
-					};
-				});
-		});
-		return Promise.all(promises);
-	};
-
 	render() {
 		let listingCards = this.state.listings.map((listing, i) => {
 			return (
-				<div>
-					<Listing
-						key={i}
-						{...listing}
-						areaId={this.props.id}
-						selectListing={this.props.selectListing}
-					/>
-				</div>
+				<Listing
+					key={i}
+					{...listing}
+					areaId={this.props.id}
+					selectListing={this.props.selectListing}
+				/>
 			);
 		});
 
