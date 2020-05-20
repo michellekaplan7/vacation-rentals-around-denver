@@ -23,25 +23,6 @@ class App extends Component {
 			.catch((err) => console.log(err));
 	}
 
-	fetchAreaDetails = (areaList) => {
-		const promises = areaList.map((area) => {
-			return fetch(this.state.url + area.details)
-				.then((response) => response.json())
-				.then((details) => {
-					return {
-						area: area.area,
-						details: area.details,
-						id: details.id,
-						name: details.name,
-						location: details.location,
-						about: details.about,
-						listings: details.listings,
-					};
-				});
-		});
-		return Promise.all(promises);
-	};
-
 	selectListing = (selectedListing) => {
 		this.setState({ selectedListing });
 	};

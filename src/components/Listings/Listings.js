@@ -34,14 +34,12 @@ class Listings extends Component {
 	render() {
 		let listingCards = this.state.listings.map((listing, i) => {
 			return (
-				<div>
-					<Listing
-						key={i}
-						{...listing}
-						areaId={this.props.id}
-						selectListing={this.props.selectListing}
-					/>
-				</div>
+				<Listing
+					key={i}
+					{...listing}
+					areaId={this.props.id}
+					selectListing={this.props.selectListing}
+				/>
 			);
 		});
 

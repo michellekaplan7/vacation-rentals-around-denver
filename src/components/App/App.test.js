@@ -1,12 +1,49 @@
 import React from "react";
 import App from "./App";
-// import Areas from "./Areas";
-import { Router, MemoryRouter } from "react-router-dom";
-import { createMemoryHistory } from "history";
-import { render, fireEvent } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+// import { createMemoryHistory } from "history";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/";
+import { getAreas, fetchListingDetails } from "../../apiCalls";
+jest.mock("../../apiCalls");
+
+const mockAreasData = [
+	{
+		about:
+			"RiNo is a burgeoning area with new bars, restaurants and event spaces popping up all the time. Explore this thriving area of Denver today!",
+		area: "RiNo",
+		details: "/api/v1/areas/590",
+		id: 590,
+		listings: [
+			"/api/v1/listings/3",
+			"/api/v1/listings/44",
+			"/api/v1/listings/221",
+			"/api/v1/listings/744",
+			"/api/v1/listings/90",
+			"/api/v1/listings/310",
+		],
+		location: "North of Downtown Denver",
+		name: "River North",
+	},
+	{
+		about:
+			"Park Hill features one of the best views of the downtown area and surrounding mountains. With easy access to City Park and the major highways, Park Hill also includes many unique styles of homes.",
+		area: "Park Hill",
+		details: "/api/v1/areas/751",
+		id: 751,
+		listings: [
+			"/api/v1/listings/3921",
+			"/api/v1/listings/56",
+			"/api/v1/listings/21",
+		],
+		location: "East of Downtown Denver",
+		name: "Park Hill",
+	},
+];
 
 describe("App", () => {
+	getAreas.mockResolvedValue(mockAreasData);
+
 	describe("Unit Tests", () => {
 		it("should render the welcome form upon load", () => {
 			const router = (
@@ -24,7 +61,7 @@ describe("App", () => {
 	});
 
 	describe("Integration Tests", () => {
-		it("should render Areas upon sign in from WelcomeForm", () => {
+		it("should render the user info in the Header", () => {
 			const router = (
 				<MemoryRouter initialEntries={["/"]}>
 					<App />
@@ -77,20 +114,20 @@ describe("App", () => {
 			expect(namePlaceholderText).toBeInTheDocument();
 		});
 
-		// it("should render the listings page for an area upon clicking the link on the card", () => {
-		// const history = createMemoryHistory();
-		// 	const { getByText } = render(
-		// 		<MemoryRouter>
-		// 			<Area {...mockAreaInfo} />
-		// 		</MemoryRouter>
-		// 	);
+		it("should render the listings page for an area upon clicking the link on the card", async () => {
+			getAreas.mockResolvedValue(mockAreasData);
 
-		// 	const seeAreaListingsLink = getByText("See Rad Arvad Listings");
+			const { getByText, debug } = render(
+				<MemoryRouter initialEntries={["/", "/areas"]} initialIndex={1}>
+					<App />
+				</MemoryRouter>
+			);
 
-		// 	expect(seeAreaListingsLink).toBeInTheDocument();
+			const seeAreaListingsLink = await waitFor(() => getByText("River North"));
 
-		// 	fireEvent.click(seeAreaListingsLink);
+			expect(seeAreaListingsLink).toBeInTheDocument();
 
-		// });
+			fireEvent.click(seeAreaListingsLink);
+		});
 	});
 });
