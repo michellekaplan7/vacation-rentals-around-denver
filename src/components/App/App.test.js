@@ -67,7 +67,7 @@ fetchListingDetails.mockResolvedValue(mockListingsData);
 getAreas.mockResolvedValue(mockAreasData);
 
 describe("App", () => {
-	getAreas.mockResolvedValue(mockAreasData);
+	// getAreas.mockResolvedValue(mockAreasData);
 
 	describe("Unit Tests", () => {
 		it("should render the welcome form upon load", () => {
@@ -120,6 +120,7 @@ describe("App", () => {
 					<App />
 				</MemoryRouter>
 			);
+
 			const { getByRole, getByPlaceholderText } = render(router);
 			const signInLink = getByRole("button", { name: "Sign in" });
 			const namePlaceholderText = getByPlaceholderText("Name");
@@ -141,7 +142,7 @@ describe("App", () => {
 
 		it("should render the listings page for an area upon clicking the link on the card", async () => {
 			const { getByText, debug } = render(
-				<MemoryRouter initialEntries={["/", "/areas"]} initialIndex={1}>
+				<MemoryRouter initialEntries={["/areas"]} initialIndex={0}>
 					<App />
 				</MemoryRouter>
 			);
@@ -183,9 +184,8 @@ describe("App", () => {
 			const featuresList = getByText("This property's features:", {
 				exact: false,
 			});
-			expect(featuresList).toBeInTheDocument();
 
-			debug();
+			expect(featuresList).toBeInTheDocument();
 		});
 	});
 });

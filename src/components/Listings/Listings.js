@@ -11,21 +11,22 @@ class Listings extends Component {
 		listings: [],
 	};
 
-	componentDidMount() {
+	componentDidMount = async () => {
 		if (this.props.listings && this.state.listings.length === 0) {
-			fetchListingDetails(this.props.listings).then((listings) =>
-				this.setState({ listings })
-			);
+			const listings = await fetchListingDetails(this.props.listings);
+			this.setState({ listings });
 		}
-	}
+		if (this.props.favorites) {
+			this.setState({ listings: this.props.favorites });
+		}
+	};
 
-	componentDidUpdate(prevProps) {
+	componentDidUpdate = async (prevProps) => {
 		if (this.props.listings !== prevProps.listings) {
-			fetchListingDetails(this.props.listings).then((listings) =>
-				this.setState({ listings })
-			);
+			const listings = await fetchListingDetails(this.props.listings);
+			this.setState({ listings });
 		}
-	}
+	};
 
 	componentWillUnmount() {
 		this.setState({ listings: null });

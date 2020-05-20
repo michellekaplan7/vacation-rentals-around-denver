@@ -15,13 +15,13 @@ class App extends Component {
 		url: "https://vrad-api.herokuapp.com",
 		areas: [],
 		selectedListing: {},
+		favorites: [],
 	};
 
-	componentDidMount() {
-		getAreas()
-			.then((areas) => this.setState({ areas }))
-			.catch((err) => console.log(err));
-	}
+	componentDidMount = async () => {
+		const areas = await getAreas();
+		this.setState({ areas });
+	};
 
 	selectListing = (selectedListing) => {
 		this.setState({ selectedListing });
@@ -29,6 +29,10 @@ class App extends Component {
 
 	handleUserInfo = (userInfo) => {
 		this.setState({ userInfo });
+	};
+
+	addToFavorites = (listing) => {
+		this.setState = { favorites: [...this.state.favorites, listing] };
 	};
 
 	render() {

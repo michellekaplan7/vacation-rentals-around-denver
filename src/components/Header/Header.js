@@ -12,9 +12,14 @@ const Header = (props) => {
 					Your purpose for booking with us is: {props.userInfo.purpose}
 				</h3>
 			</div>
-			<Link className="sign-out-button" to="/">
-				Sign Out
-			</Link>
+			<div>
+				<Link className="favorites-button" to="/favorites">
+					My Favorites
+				</Link>
+				<Link className="sign-out-button" to="/">
+					Sign Out
+				</Link>
+			</div>
 		</nav>
 	);
 };

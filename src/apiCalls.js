@@ -1,47 +1,42 @@
 const url = "https://vrad-api.herokuapp.com";
 
-export const getAreas = () => {
-	return fetch("https://vrad-api.herokuapp.com/api/v1/areas")
-		.then((response) => response.json())
-		.then((data) => fetchAreaDetails(data.areas))
-		.catch((err) => console.log(err));
+export const getAreas = async () => {
+	const response = await fetch("https://vrad-api.herokuapp.com/api/v1/areas");
+	const areaData = await response.json();
+	return await fetchAreaDetails(areaData);
 };
 
 const fetchAreaDetails = (areaList) => {
-	const promises = areaList.map((area) => {
-		return fetch(url + area.details)
-			.then((response) => response.json())
-			.then((details) => {
-				return {
-					area: area.area,
-					details: area.details,
-					id: details.id,
-					name: details.name,
-					location: details.location,
-					about: details.about,
-					listings: details.listings,
-				};
-			});
+	const promises = areaList.areas.map(async (area) => {
+		const fetchedAreaData = await fetch(url + area.details);
+		const response = await fetchedAreaData.json();
+		return {
+			area: area.area,
+			details: area.details,
+			id: response.id,
+			name: response.name,
+			location: response.location,
+			about: response.about,
+			listings: response.listings,
+		};
 	});
 	return Promise.all(promises);
 };
 
 export const fetchListingDetails = (listings) => {
-	const promises = listings.map((listing) => {
-		return fetch(url + listing)
-			.then((response) => response.json())
-			.then((info) => {
-				return {
-					listing_id: info.listing_id,
-					name: info.name,
-					address: `${info.address.street}, ${info.address.zip}`,
-					superhost: info.details.superhost,
-					beds: info.details.beds,
-					baths: info.details.baths,
-					cost_per_night: info.details.cost_per_night,
-					features: info.details.features,
-				};
-			});
+	const promises = listings.map(async (listing) => {
+		const fetchedListingData = await fetch(url + listing);
+		const response = await fetchedListingData.json();
+		return {
+			listing_id: response.listing_id,
+			name: response.name,
+			address: `${response.address.street}, ${response.address.zip}`,
+			superhost: response.details.superhost,
+			beds: response.details.beds,
+			baths: response.details.baths,
+			cost_per_night: response.details.cost_per_night,
+			features: response.details.features,
+		};
 	});
 	return Promise.all(promises);
 };
