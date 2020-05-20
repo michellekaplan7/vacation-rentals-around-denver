@@ -7,185 +7,263 @@ import { getAreas, fetchListingDetails } from "../../apiCalls";
 jest.mock("../../apiCalls");
 
 const mockAreasData = [
-	{
-		about:
-			"RiNo is a burgeoning area with new bars, restaurants and event spaces popping up all the time. Explore this thriving area of Denver today!",
-		area: "RiNo",
-		details: "/api/v1/areas/590",
-		id: 590,
-		listings: [
-			"/api/v1/listings/3",
-			"/api/v1/listings/44",
-			"/api/v1/listings/221",
-			"/api/v1/listings/744",
-			"/api/v1/listings/90",
-			"/api/v1/listings/310",
-		],
-		location: "North of Downtown Denver",
-		name: "River North",
-	},
-	{
-		about:
-			"Park Hill features one of the best views of the downtown area and surrounding mountains. With easy access to City Park and the major highways, Park Hill also includes many unique styles of homes.",
-		area: "Park Hill",
-		details: "/api/v1/areas/751",
-		id: 751,
-		listings: [
-			"/api/v1/listings/3921",
-			"/api/v1/listings/56",
-			"/api/v1/listings/21",
-		],
-		location: "East of Downtown Denver",
-		name: "Park Hill",
-	},
+  {
+    about:
+      "RiNo is a burgeoning area with new bars, restaurants and event spaces popping up all the time. Explore this thriving area of Denver today!",
+    area: "RiNo",
+    details: "/api/v1/areas/590",
+    id: 590,
+    listings: [
+      "/api/v1/listings/3",
+      "/api/v1/listings/44",
+      "/api/v1/listings/221",
+      "/api/v1/listings/744",
+      "/api/v1/listings/90",
+      "/api/v1/listings/310",
+    ],
+    location: "North of Downtown Denver",
+    name: "River North",
+  },
+  {
+    about:
+      "Park Hill features one of the best views of the downtown area and surrounding mountains. With easy access to City Park and the major highways, Park Hill also includes many unique styles of homes.",
+    area: "Park Hill",
+    details: "/api/v1/areas/751",
+    id: 751,
+    listings: [
+      "/api/v1/listings/3921",
+      "/api/v1/listings/56",
+      "/api/v1/listings/21",
+    ],
+    location: "East of Downtown Denver",
+    name: "Park Hill",
+  },
 ];
 
 const mockListingsData = [
-	{
-		address: "2127 Clay St, 80207",
-		baths: 3,
-		beds: 2,
-		cost_per_night: 185,
-		features: [("spacious yard", "outdoor patio", "cool neighborhood")],
-		listing_id: 3921,
-		name: "Spacious New Build in Park Hill",
-		superhost: false,
-	},
-	{
-		address: "935 S Clarkson St, 80209",
-		baths: 1,
-		beds: 2,
-		cost_per_night: 165,
-		features: [("close to Wash Park", "cozy front porch")],
-		listing_id: 56,
-		name: "Updated Park Hill Duplex",
-		superhost: true,
-	},
+  {
+    address: "2127 Clay St, 80207",
+    baths: 3,
+    beds: 2,
+    cost_per_night: 185,
+    features: ["spacious yard", "outdoor patio", "cool neighborhood"],
+    listing_id: 3921,
+    name: "Spacious New Build in Park Hill",
+    superhost: false,
+  },
+  {
+    address: "935 S Clarkson St, 80209",
+    baths: 1,
+    beds: 2,
+    cost_per_night: 165,
+    features: ["close to Wash Park", "cozy front porch"],
+    listing_id: 56,
+    name: "Updated Park Hill Duplex",
+    superhost: true,
+  },
 ];
 
 fetchListingDetails.mockResolvedValue(mockListingsData);
 getAreas.mockResolvedValue(mockAreasData);
 
 describe("App", () => {
-	// getAreas.mockResolvedValue(mockAreasData);
+  describe("Unit Tests", () => {
+    it("should render the welcome form upon load", () => {
+      const router = (
+        <MemoryRouter initialEntries={["/"]}>
+          <App />
+        </MemoryRouter>
+      );
+      const { getByPlaceholderText } = render(router);
+      const namePlaceholderText = getByPlaceholderText("Name");
+      const emailPlaceholderText = getByPlaceholderText("Email");
 
-	describe("Unit Tests", () => {
-		it("should render the welcome form upon load", () => {
-			const router = (
-				<MemoryRouter initialEntries={["/"]}>
-					<App />
-				</MemoryRouter>
-			);
-			const { getByPlaceholderText } = render(router);
-			const namePlaceholderText = getByPlaceholderText("Name");
-			const emailPlaceholderText = getByPlaceholderText("Email");
+      expect(namePlaceholderText).toBeInTheDocument();
+      expect(emailPlaceholderText).toBeInTheDocument();
+    });
+  });
 
-			expect(namePlaceholderText).toBeInTheDocument();
-			expect(emailPlaceholderText).toBeInTheDocument();
-		});
-	});
+  describe("Integration Tests", () => {
+    it("should render the user info in the Header", () => {
+      const router = (
+        <MemoryRouter initialEntries={["/"]}>
+          <App />
+        </MemoryRouter>
+      );
+      const { getByRole, getByText, getByPlaceholderText } = render(router);
+      const signInLink = getByRole("button", { name: "Sign in" });
+      const namePlaceholderText = getByPlaceholderText("Name");
+      const emailPlaceholderText = getByPlaceholderText("Email");
+      const purposeSelect = getByRole("combobox");
 
-	describe("Integration Tests", () => {
-		it("should render the user info in the Header", () => {
-			const router = (
-				<MemoryRouter initialEntries={["/"]}>
-					<App />
-				</MemoryRouter>
-			);
-			const { getByRole, getByText, getByPlaceholderText } = render(router);
-			const signInLink = getByRole("button", { name: "Sign in" });
-			const namePlaceholderText = getByPlaceholderText("Name");
-			const emailPlaceholderText = getByPlaceholderText("Email");
-			const purposeSelect = getByRole("combobox");
+      expect(signInLink).toBeInTheDocument();
 
-			expect(signInLink).toBeInTheDocument();
+      fireEvent.change(namePlaceholderText, { target: { value: "Elliot" } });
+      fireEvent.change(emailPlaceholderText, {
+        target: { value: "Elliot@gmail.com" },
+      });
+      fireEvent.change(purposeSelect, { target: { value: "business" } });
 
-			fireEvent.change(namePlaceholderText, { target: { value: "Elliot" } });
-			fireEvent.change(emailPlaceholderText, {
-				target: { value: "Elliot@gmail.com" },
-			});
-			fireEvent.change(purposeSelect, { target: { value: "business" } });
+      fireEvent.click(signInLink);
 
-			fireEvent.click(signInLink);
+      expect(getByText("Welcome Elliot")).toBeInTheDocument();
+      expect(getByText("Your purpose for booking with us is: business")).toBeInTheDocument();
+    });
 
-			expect(getByText("Welcome Elliot")).toBeInTheDocument();
-			expect(
-				getByText("Your purpose for booking with us is: business")
-			).toBeInTheDocument();
-		});
+    it("should not render Areas if there is a field not filled out from WelcomeForm", () => {
+      const router = (
+        <MemoryRouter initialEntries={["/"]}>
+          <App />
+        </MemoryRouter>
+      );
 
-		it("should not render Areas if there is a field not filled out from WelcomeForm", () => {
-			const router = (
-				<MemoryRouter initialEntries={["/"]}>
-					<App />
-				</MemoryRouter>
-			);
+      const { getByRole, getByPlaceholderText } = render(router);
+      const signInLink = getByRole("button", { name: "Sign in" });
+      const namePlaceholderText = getByPlaceholderText("Name");
+      const emailPlaceholderText = getByPlaceholderText("Email");
+      const purposeSelect = getByRole("combobox");
 
-			const { getByRole, getByPlaceholderText } = render(router);
-			const signInLink = getByRole("button", { name: "Sign in" });
-			const namePlaceholderText = getByPlaceholderText("Name");
-			const emailPlaceholderText = getByPlaceholderText("Email");
-			const purposeSelect = getByRole("combobox");
+      expect(signInLink).toBeInTheDocument();
 
-			expect(signInLink).toBeInTheDocument();
+      fireEvent.change(namePlaceholderText, { target: { value: "" } });
+      fireEvent.change(emailPlaceholderText, {
+        target: { value: "Elliot@gmail.com" },
+      });
+      fireEvent.change(purposeSelect, { target: { value: "business" } });
 
-			fireEvent.change(namePlaceholderText, { target: { value: "" } });
-			fireEvent.change(emailPlaceholderText, {
-				target: { value: "Elliot@gmail.com" },
-			});
-			fireEvent.change(purposeSelect, { target: { value: "business" } });
+      fireEvent.click(signInLink);
 
-			fireEvent.click(signInLink);
+      expect(namePlaceholderText).toBeInTheDocument();
+    });
 
-			expect(namePlaceholderText).toBeInTheDocument();
-		});
+    it("should render Areas upon filling out the WelcomeForm", async () => {
+      const router = (
+        <MemoryRouter initialEntries={["/"]}>
+          <App />
+        </MemoryRouter>
+      );
 
-		it("should render the listings page for an area upon clicking the link on the card", async () => {
-			const { getByText, debug } = render(
-				<MemoryRouter initialEntries={["/areas"]} initialIndex={0}>
-					<App />
-				</MemoryRouter>
-			);
+      const { getByRole, getByPlaceholderText, getByText } = render(router);
+      const signInLink = getByRole("button", { name: "Sign in" });
+      const namePlaceholderText = getByPlaceholderText("Name");
+      const emailPlaceholderText = getByPlaceholderText("Email");
+      const purposeSelect = getByRole("combobox");
 
-			const seeAreaListingsLink = await waitFor(() =>
-				getByText("See Park Hill Listings")
-			);
+      expect(signInLink).toBeInTheDocument();
 
-			expect(seeAreaListingsLink).toBeInTheDocument();
+      fireEvent.change(namePlaceholderText, { target: { value: "Bart" } });
+      fireEvent.change(emailPlaceholderText, {
+        target: { value: "Elliot@gmail.com" },
+      });
+      fireEvent.change(purposeSelect, { target: { value: "business" } });
 
-			fireEvent.click(seeAreaListingsLink);
+      fireEvent.click(signInLink);
 
-			const listingName = await waitFor(() =>
-				getByText("Spacious New Build in Park Hill")
-			);
+      const areaName = await waitFor(() => getByText("River North"));
 
-			expect(listingName).toBeInTheDocument();
-		});
+      expect(areaName).toBeInTheDocument();
+    });
 
-		it("should render the listings detail page when Location Details button is clicked", async () => {
-			const { getByText, getAllByText, debug } = render(
-				<MemoryRouter
-					initialEntries={["/", "/areas", "/areas/590/listings"]}
-					initialIndex={2}>
-					<App />
-				</MemoryRouter>
-			);
+    it("should render the listings page for an area upon clicking the link on the card", async () => {
+      const { getByText } = render(
+        <MemoryRouter initialEntries={["/areas"]} initialIndex={0}>
+          <App />
+        </MemoryRouter>
+      );
 
-			const listingName = await waitFor(() =>
-				getByText("Spacious New Build in Park Hill")
-			);
+      const seeAreaListingsLink = await waitFor(() =>
+        getByText("See Park Hill Listings")
+      );
 
-			expect(listingName).toBeInTheDocument();
+      expect(seeAreaListingsLink).toBeInTheDocument();
 
-			const locationDetailsBtn = getAllByText("Location details");
+      fireEvent.click(seeAreaListingsLink);
 
-			fireEvent.click(locationDetailsBtn[0]);
+      const listingName = await waitFor(() =>
+        getByText("Spacious New Build in Park Hill")
+      );
 
-			const featuresList = getByText("This property's features:", {
-				exact: false,
-			});
+      expect(listingName).toBeInTheDocument();
+    });
 
-			expect(featuresList).toBeInTheDocument();
-		});
-	});
+    it("should render the listings detail page when Location Details button is clicked", async () => {
+      const { getByText, getAllByText } = render(
+        <MemoryRouter
+          initialEntries={["/", "/areas", "/areas/590/listings"]}
+          initialIndex={2}
+        >
+          <App />
+        </MemoryRouter>
+      );
+
+      const listingName = await waitFor(() =>
+        getByText("Spacious New Build in Park Hill")
+      );
+
+      expect(listingName).toBeInTheDocument();
+
+      const locationDetailsBtn = getAllByText("Location details");
+
+      fireEvent.click(locationDetailsBtn[0]);
+
+      const featuresList = getByText("This property's features:", {
+        exact: false,
+      });
+      expect(featuresList).toBeInTheDocument();
+    });
+
+    it("should go back to the listings page upon clicking the Back To Listings button", async () => {
+      const { getByText, getAllByText } = render(
+        <MemoryRouter
+          initialEntries={["/", "/areas", "/areas/590/listings"]}
+          initialIndex={2}
+        >
+          <App />
+        </MemoryRouter>
+      );
+
+      const locationDetailsBtn = await waitFor(() =>
+        getAllByText("Location details")
+      );
+
+      fireEvent.click(locationDetailsBtn[0]);
+
+      const backToListingsBtn = getByText("Back to Listings");
+
+      expect(backToListingsBtn).toBeInTheDocument();
+
+      fireEvent.click(backToListingsBtn);
+
+      const listingName = await waitFor(() =>
+        getByText("Spacious New Build in Park Hill")
+      );
+      const backToAreasBtn = getByText("Back to Areas");
+      expect(listingName).toBeInTheDocument();
+      expect(backToAreasBtn).toBeInTheDocument();
+    });
+
+    it("should go back to the areas page upon clicking the Back To Areas button", async () => {
+      const { getByText } = render(
+        <MemoryRouter
+          initialEntries={["/", "/areas", "/areas/590/listings"]}
+          initialIndex={2}
+        >
+          <App />
+        </MemoryRouter>
+      );
+
+      const listingName = await waitFor(() =>
+        getByText("Spacious New Build in Park Hill")
+      );
+      expect(listingName).toBeInTheDocument();
+
+      const backToAreasBtn = getByText("Back to Areas");
+      expect(backToAreasBtn).toBeInTheDocument();
+
+      fireEvent.click(backToAreasBtn);
+
+      const areaName = getByText("River North");
+      expect(areaName).toBeInTheDocument();
+    });
+  });
 });

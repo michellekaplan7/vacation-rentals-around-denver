@@ -24,7 +24,6 @@ const ListingDetails = ({
 	const featuresList = features.map((feature, i) => {
 		return `${feature}, `;
 	});
-
 	return (
 		<div className="listing-detail">
 			<h1 className="name">{name}</h1>
