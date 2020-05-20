@@ -1,7 +1,6 @@
 import React from "react";
 import App from "./App";
 import { MemoryRouter } from "react-router-dom";
-// import { createMemoryHistory } from "history";
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/";
 import { getAreas, fetchListingDetails } from "../../apiCalls";
@@ -40,6 +39,32 @@ const mockAreasData = [
 		name: "Park Hill",
 	},
 ];
+
+const mockListingsData = [
+	{
+		address: "2127 Clay St, 80207",
+		baths: 3,
+		beds: 2,
+		cost_per_night: 185,
+		features: [("spacious yard", "outdoor patio", "cool neighborhood")],
+		listing_id: 3921,
+		name: "Spacious New Build in Park Hill",
+		superhost: false,
+	},
+	{
+		address: "935 S Clarkson St, 80209",
+		baths: 1,
+		beds: 2,
+		cost_per_night: 165,
+		features: [("close to Wash Park", "cozy front porch")],
+		listing_id: 56,
+		name: "Updated Park Hill Duplex",
+		superhost: true,
+	},
+];
+
+fetchListingDetails.mockResolvedValue(mockListingsData);
+getAreas.mockResolvedValue(mockAreasData);
 
 describe("App", () => {
 	getAreas.mockResolvedValue(mockAreasData);
@@ -115,19 +140,52 @@ describe("App", () => {
 		});
 
 		it("should render the listings page for an area upon clicking the link on the card", async () => {
-			getAreas.mockResolvedValue(mockAreasData);
-
 			const { getByText, debug } = render(
 				<MemoryRouter initialEntries={["/", "/areas"]} initialIndex={1}>
 					<App />
 				</MemoryRouter>
 			);
 
-			const seeAreaListingsLink = await waitFor(() => getByText("River North"));
+			const seeAreaListingsLink = await waitFor(() =>
+				getByText("See Park Hill Listings")
+			);
 
 			expect(seeAreaListingsLink).toBeInTheDocument();
 
 			fireEvent.click(seeAreaListingsLink);
+
+			const listingName = await waitFor(() =>
+				getByText("Spacious New Build in Park Hill")
+			);
+
+			expect(listingName).toBeInTheDocument();
+		});
+
+		it("should render the listings detail page when Location Details button is clicked", async () => {
+			const { getByText, getAllByText, debug } = render(
+				<MemoryRouter
+					initialEntries={["/", "/areas", "/areas/590/listings"]}
+					initialIndex={2}>
+					<App />
+				</MemoryRouter>
+			);
+
+			const listingName = await waitFor(() =>
+				getByText("Spacious New Build in Park Hill")
+			);
+
+			expect(listingName).toBeInTheDocument();
+
+			const locationDetailsBtn = getAllByText("Location details");
+
+			fireEvent.click(locationDetailsBtn[0]);
+
+			const featuresList = getByText("This property's features:", {
+				exact: false,
+			});
+			expect(featuresList).toBeInTheDocument();
+
+			debug();
 		});
 	});
 });
