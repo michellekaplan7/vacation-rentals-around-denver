@@ -58,4 +58,16 @@ class Listings extends Component {
 	}
 }
 
+Listings.propTypes = {
+	about: PropTypes.string.isRequired,
+	area: PropTypes.string.isRequired,
+	details: PropTypes.string.isRequired,
+	id: PropTypes.number.isRequired,
+	listings: PropTypes.array.isRequired,
+	location: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	selectListing: PropTypes.func.isRequired,
+	match: PropTypes.string.isRequired
+  };
+
 export default Listings;

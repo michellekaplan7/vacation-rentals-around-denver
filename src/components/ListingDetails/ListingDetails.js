@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import SimpleImageSlider from "react-simple-image-slider";
 import MdHeart from "react-ionicons/lib/MdHeart";
@@ -54,5 +55,18 @@ const ListingDetails = ({
 		</div>
 	);
 };
+
+ListingDetails.propTypes = {
+	address: PropTypes.string.isRequired,
+	areaId: PropTypes.number.isRequired,
+	baths: PropTypes.number.isRequired,
+	beds: PropTypes.number.isRequired,
+	cost_per_night: PropTypes.number.isRequired,
+	features: PropTypes.array.isRequired,
+	listing_id: PropTypes.number.isRequired,
+	name: PropTypes.string.isRequired,
+	selectListing: PropTypes.func.isRequired,
+	superhost: PropTypes.bool.isRequired,
+  };
 
 export default ListingDetails;
