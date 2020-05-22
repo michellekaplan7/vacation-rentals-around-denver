@@ -43,7 +43,7 @@ class App extends Component {
 						path="/areas/:id/listings/:listingId"
 						render={({ match }) => {
 							return (
-								<div>
+								<div className="body-container">
 									<Header userInfo={this.state.userInfo} />
 									<ListingDetails {...this.state.selectedListing} />
 								</div>
@@ -58,7 +58,7 @@ class App extends Component {
 								(area) => areaId === area.id
 							);
 							return (
-								<div>
+								<div className="body-container">
 									<Header userInfo={this.state.userInfo} />
 									<Listings
 										match={match.params.id}
@@ -74,7 +74,7 @@ class App extends Component {
 						path="/areas"
 						render={() => {
 							return (
-								<div>
+								<div className="body-container">
 									<Header userInfo={this.state.userInfo} />
 									<Areas areas={this.state.areas} />
 								</div>

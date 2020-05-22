@@ -19,7 +19,7 @@
 }
 
 .back-to-listings-button {
-	background: #ffa500;
+	background: #de440c;
 	border: none;
 	border-radius: 1em;
 	cursor: pointer;
@@ -27,8 +27,14 @@
 	font-weight: 600;
 	letter-spacing: 3px;
 	margin-top: 2em;
-	opacity: 0.5;
 	padding: 20px 30px;
+	text-decoration: none;
+	color: #FFF;
+}
+
+.back-to-listings-button:hover{
+	background: #f4581f;
+	border-radius: 1em;
 }
 
 .features-list {

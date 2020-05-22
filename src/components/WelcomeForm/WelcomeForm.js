@@ -42,7 +42,8 @@ class WelcomeForm extends Component {
           this.handleSignIn(event);
         }}
       >
-        <h3 className="sign-in-title">Welcome to VRAD!</h3>
+        <h1 className="sign-in-title">Welcome to VRAD!</h1>
+        <h3 className="subheader">Vacation Rentals Around Denver</h3>
         <div className="sign-in-items">
           <label>
             Please enter your name:

@@ -1,6 +1,6 @@
 * {
 	box-sizing: border-box;
-	/* font-family: "Roboto", sans-serif; */
+	font-family: 'Libre Franklin', sans-serif;
 	margin: 0;
 	padding: 0;
 }
@@ -13,4 +13,9 @@
 	width: 100%;
 	background-image: url("/images/union-station-denver.jpg");
 	background-size: cover;
+	/* height: 100vh; */
+}
+
+.body-container {
+	width: 100%;
 }

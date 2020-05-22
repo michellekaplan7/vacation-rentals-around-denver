@@ -6,16 +6,22 @@
 }
 
 .back-to-areas-button {
-	background: #ffa500;
+	background: #de440c;
 	border: none;
 	cursor: pointer;
 	display: block;
 	font-size: medium;
 	font-weight: 600;
 	letter-spacing: 3px;
-	opacity: 0.5;
 	padding: 20px 30px;
 	width: 100%;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.back-to-areas-button:hover{
+	background: #f4581f;
+	border-radius: 1em;
 }
 
 .bottom {

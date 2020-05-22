@@ -16,24 +16,25 @@ nav {
 }
 
 .sign-out-button {
-	background: #ffa500;
+	background: #de440c;
 	border: none;
 	border-radius: 1em;
 	cursor: pointer;
 	font-weight: 600;
 	letter-spacing: 3px;
 	padding: 10px 20px;
-	opacity: 0.5;
 	text-decoration: none;
+	color: #FFF;
 }
 
-.sign-out-button:hover {
-	background: #ff8c00;
+.sign-out-button:hover,
+.favorites-button:hover {
+	background: #f4581f;
 	border-radius: 1em;
 }
 
 .favorites-button {
-	background: #ffa500;
+	background: #de440c;
 	border: none;
 	border-radius: 1em;
 	cursor: pointer;
@@ -41,6 +42,6 @@ nav {
 	letter-spacing: 3px;
 	margin: 10px;
 	padding: 10px 20px;
-	opacity: 0.5;
 	text-decoration: none;
+	color: #FFF;
 }
