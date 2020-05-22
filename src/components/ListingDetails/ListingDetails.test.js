@@ -8,13 +8,13 @@ describe("Listing", () => {
   it("should render a Listing card", () => {
     const mockListingDetailsData = {
       listing_id: 3,
-      name: "The Playboy Mansion",
+      name: "The White House",
       cost_per_night: 10000,
       areaId: 590,
-      address: "123 Yo Mama's House",
-      features: ["sex dungeon", "cocaine", "strippers"],
+      address: "1600 Pennsylvania Ave",
+      features: ["president portraits", "gold chandelier", "flags"],
       beds: 14,
-      baths: 1,
+      baths: 5,
       superhost: false,
     };
 
@@ -26,6 +26,6 @@ describe("Listing", () => {
 
     const { getByText } = render(router);
 
-    expect(getByText("sex dungeon", { exact: false })).toBeInTheDocument();
+    expect(getByText("president portraits", { exact: false })).toBeInTheDocument();
   });
 });

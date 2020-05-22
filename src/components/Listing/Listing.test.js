@@ -8,7 +8,7 @@ describe("Listing", () => {
   it("should render a Listing card", () => {
     const mockListingData = {
       listing_id: 3,
-      name: "The Playboy Mansion",
+      name: "The White House",
       cost_per_night: 10000,
       areaId: 590,
     };
@@ -21,6 +21,6 @@ describe("Listing", () => {
 
     const { getByText } = render(router);
 
-    expect(getByText("The Playboy Mansion")).toBeInTheDocument();
+    expect(getByText("The White House")).toBeInTheDocument();
   });
 });
