@@ -2,12 +2,10 @@
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	/* flex-wrap: wrap; */
 	background-color: #fff;
 	border-radius: 1em;
-	/* flex-grow: 1; */
 	justify-content: center;
-	margin: 2em;
+	margin: 2em auto;
 	padding: 40px;
 	height: 550px;
 	width: 400px;

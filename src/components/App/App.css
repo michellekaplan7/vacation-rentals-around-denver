@@ -10,10 +10,10 @@
 	flex-direction: column;
 	align-items: center;
 	margin: 0;
-	width: 100%;
 	background-image: url("/images/union-station-denver.jpg");
 	background-size: cover;
-	/* height: 100vh; */
+	background-attachment: fixed;
+	background-position: center;
 }
 
 .body-container {

@@ -1,8 +1,8 @@
 .listings {
 	display: flex;
-	flex-direction: row;
+	/* flex-direction: row; */
 	flex-wrap: wrap;
-	justify-content: flex-start;
+	/* justify-content: flex-start; */
 }
 
 .back-to-areas-button {
