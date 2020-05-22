@@ -14,8 +14,8 @@ A vacation rentals app that shows the user areas and listings around Denver
 
 ## Gif of working Website
 
-![vrad_login](https://media.giphy.com/media/TIdgKm8JR9KygEKXi0/giphy.gif)
-![vrad_navigation](https://media.giphy.com/media/SULFoqtp5Cb1ermG8m/giphy.gif)
+![vrad_login](https://media.giphy.com/media/ZCw2zKiIetcAZr2E2Z/giphy.gif)
+![vrad_navigation](https://media.giphy.com/media/Q5v6DXG9CPat5sCGKD/giphy.gif)
 
 ## Setup
 
@@ -24,7 +24,7 @@ A vacation rentals app that shows the user areas and listings around Denver
 ```
 npm install
 ```
-3. Then, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see the page there! Then, you can enter `control + c` in your terminal to stop the server at any time.
+3. Then, run `npm start` in your terminal. Go to `http://localhost:3000/` and you should see the page there! Then, you can enter `control + c` in your terminal to stop the server at any time.
 
 ## Technologies Used
 - React
