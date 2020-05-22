@@ -11,5 +11,6 @@
 	align-items: center;
 	margin: 0;
 	width: 100%;
-	background-color: orange;
+	background-image: url("/images/union-station-denver.jpg");
+	background-size: cover;
 }
