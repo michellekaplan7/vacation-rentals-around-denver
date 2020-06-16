@@ -6,6 +6,7 @@ import "@testing-library/jest-dom";
 
 describe("Listing", () => {
   it("should render a Listing card", () => {
+    const mockSelectListing = jest.fn();
     const mockListingData = {
       listing_id: 3,
       name: "The White House",
@@ -15,7 +16,7 @@ describe("Listing", () => {
 
     const router = (
       <MemoryRouter>
-        <Listing {...mockListingData} />
+        <Listing {...mockListingData} selectListing={mockSelectListing} />
       </MemoryRouter>
     );
 
