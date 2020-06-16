@@ -1,13 +1,13 @@
 .listing {
 	align-items: center;
-	display: flex;
-	flex-direction: column;
 	background-color: #fff;
 	border-radius: 1em;
+	display: flex;
+	flex-direction: column;
+	height: 550px;
 	justify-content: center;
 	margin: 2em auto;
 	padding: 40px;
-	height: 550px;
 	width: 400px;
 }
 
@@ -19,6 +19,7 @@
 	background: #de440c;
 	border: none;
 	border-radius: 1em;
+	color: #FFF;
 	cursor: pointer;
 	font-size: medium;
 	font-weight: 600;
@@ -26,16 +27,11 @@
 	margin-top: 2em;
 	padding: 20px 30px;
 	text-decoration: none;
-	color: #FFF;
 }
 
 .listing-details-button:hover{
 	background: #f4581f;
 	border-radius: 1em;
-}
-
-.listing-name {
-	/* margin-bottom: 10px; */
 }
 
 .cost {

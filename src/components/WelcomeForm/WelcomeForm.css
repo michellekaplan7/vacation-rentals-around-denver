@@ -1,14 +1,14 @@
 form {
-  flex-direction: column;
   align-items: center;
   background-color: #fff;
+  background: rgba(0, 0, 0, 0.75);
   border-radius: 1em;
+  color: white;
+  flex-direction: column;
   flex-grow: 1;
   margin: 4em 0;
   padding: 50px 100px;
   width: 31em;
-  background: rgba(0, 0, 0, 0.75);
-  color: white;
 }
 
 .sign-in-items {
@@ -26,25 +26,25 @@ form {
 }
 
 input {
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  color: white;
   font-size: large;
   font-weight: 700;
   margin-bottom: 30px;
   opacity: 0.6;
   padding: 2px 0 5px;
   width: 250px;
-  background: rgba(0, 0, 0, 0.75);
-  color: white;
-  border-radius: 5px;
 }
 
 select {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
   font-weight: 700;
+  height: 3em;
   opacity: 0.6;
   padding: 2px 0 5px;
   width: 250px;
-  background: rgba(0, 0, 0, 0.75);
-  color: white;
-  height: 3em;
 }
 
 .sign-in-button {

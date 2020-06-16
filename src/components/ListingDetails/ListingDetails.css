@@ -1,9 +1,9 @@
 .listing-detail {
 	align-items: center;
-	display: flex;
-	flex-direction: column;
 	background-color: #fff;
 	border-radius: 1em;
+	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	padding: 40px;
 	width: 700px;
@@ -25,6 +25,7 @@ div.listing-detail {
 	background: #de440c;
 	border: none;
 	border-radius: 1em;
+	color: #FFF;
 	cursor: pointer;
 	font-size: medium;
 	font-weight: 600;
@@ -32,7 +33,6 @@ div.listing-detail {
 	margin-top: 2em;
 	padding: 20px 30px;
 	text-decoration: none;
-	color: #FFF;
 }
 
 .back-to-listings-button:hover{

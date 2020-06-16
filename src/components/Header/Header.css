@@ -1,30 +1,30 @@
 nav {
-	height: 5em;
+	align-items: center;
+	background-color: #fff;
+	border-bottom: 2px solid black;
 	display: flex;
 	flex-direction: row;
-	background-color: #fff;
+	height: 5em;
 	justify-content: space-between;
-	align-items: center;
-	border-bottom: 2px solid black;
 	padding: 0px 30px;
 }
 
 .greeting {
+	align-items: center;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 }
 
 .sign-out-button {
 	background: #de440c;
 	border: none;
 	border-radius: 1em;
+	color: #FFF;
 	cursor: pointer;
 	font-weight: 600;
 	letter-spacing: 3px;
 	padding: 10px 20px;
 	text-decoration: none;
-	color: #FFF;
 }
 
 .sign-out-button:hover,
@@ -37,11 +37,11 @@ nav {
 	background: #de440c;
 	border: none;
 	border-radius: 1em;
+	color: #FFF;
 	cursor: pointer;
 	font-weight: 600;
 	letter-spacing: 3px;
 	margin: 10px;
 	padding: 10px 20px;
 	text-decoration: none;
-	color: #FFF;
 }
