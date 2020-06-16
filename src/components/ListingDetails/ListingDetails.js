@@ -57,16 +57,15 @@ const ListingDetails = ({
 };
 
 ListingDetails.propTypes = {
+	name: PropTypes.string.isRequired,
 	address: PropTypes.string.isRequired,
 	areaId: PropTypes.number.isRequired,
 	baths: PropTypes.number.isRequired,
 	beds: PropTypes.number.isRequired,
 	cost_per_night: PropTypes.number.isRequired,
 	features: PropTypes.array.isRequired,
-	listing_id: PropTypes.number.isRequired,
-	name: PropTypes.string.isRequired,
-	selectListing: PropTypes.func.isRequired,
 	superhost: PropTypes.bool.isRequired,
+	listing_id: PropTypes.number.isRequired,
   };
 
 export default ListingDetails;
