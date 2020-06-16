@@ -1,5 +1,6 @@
 {
-	"name": "vrad",
+	"homepage": "https://vacation-rentals-around-denver.herokuapp.com/",
+	"name": "vacation-rentals-around-denver",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
