@@ -1,5 +1,7 @@
 # Vactation Rentals Around Denver (VRAD)
 
+[![Build Status](https://travis-ci.org/michellekaplan7/vacation-rentals-around-denver.svg?branch=master)](https://travis-ci.org/michellekaplan7/vacation-rentals-around-denver)
+
 A vacation rentals app that shows the user areas and listings around Denver
 
 ## Goals and Objectives
