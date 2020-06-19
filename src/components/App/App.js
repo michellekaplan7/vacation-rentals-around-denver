@@ -34,22 +34,13 @@ class App extends Component {
 
   toggleFavorites = (id) => {
     if (!this.state.favoritesID.includes(id)) {
-      this.setState({ favoritesID: [...this.state.favoritesID, id] }, () => {
-        // this.updateLocalStorage()
-      });
+      this.setState({ favoritesID: [...this.state.favoritesID, id] });
     } else {
       let newFavoritesID = this.state.favoritesID.filter((favorite) => {
         return favorite !== id;
       });
-      let newFavorites = this.state.favorites.filter((favorite) => {
-        return favorite.id !== id;
-      });
       this.setState(
-        { favoritesID: newFavoritesID, favorites: newFavorites },
-        () => {
-          // this.updateLocalStorage()
-        }
-      );
+        { favoritesID: newFavoritesID });
     }
   };
 
@@ -92,6 +83,20 @@ class App extends Component {
                     match={match.params.id}
                     {...selectedArea}
                     selectListing={this.selectListing}
+                  />
+                </div>
+              );
+            }}
+          />
+		    <Route
+            exact
+            path="/favorites"
+            render={() => {
+              return (
+                <div className="favorites-container">
+                  <Header
+                    userInfo={this.state.userInfo}
+                    favoritesID={this.state.favoritesID}
                   />
                 </div>
               );
