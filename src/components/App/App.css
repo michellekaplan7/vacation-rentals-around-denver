@@ -17,6 +17,7 @@
 	min-height: 100vh;
 }
 
-.body-container {
+.body-container,
+.favorites-container {
 	width: 100%;
 }
