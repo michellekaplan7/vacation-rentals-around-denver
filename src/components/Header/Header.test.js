@@ -6,6 +6,8 @@ import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/";
 
 describe("Header", () => {
+  const mockFavoritesID = [56]
+
   it("renders the correct information in the Header from the Welcome Form", () => {
     const { getByText } = render(
       <BrowserRouter>
@@ -14,6 +16,7 @@ describe("Header", () => {
             name: "Michelle",
             purpose: "vacation",
           }}
+          favoritesID={mockFavoritesID}
         />
       </BrowserRouter>
     );
@@ -22,9 +25,11 @@ describe("Header", () => {
     const welcomeUserPurpose = getByText(
       "Your purpose for booking with us is: vacation"
     );
+    const favoritesAmount = getByText("My Favorites (1)")
 
     expect(welcomeUserName).toBeInTheDocument();
     expect(welcomeUserPurpose).toBeInTheDocument();
+    expect(favoritesAmount).toBeInTheDocument();
   });
 
   it("goes back to the welcome form page when you click log out", () => {
@@ -36,6 +41,7 @@ describe("Header", () => {
             name: "Michelle",
             purpose: "vacation",
           }}
+          favoritesID={mockFavoritesID}
         />
       </BrowserRouter>
     );
