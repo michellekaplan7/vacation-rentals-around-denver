@@ -14,7 +14,7 @@ const Header = (props) => {
 			</div>
 			<div>
 				<Link className="favorites-button" to="/favorites">
-					My Favorites
+					My Favorites ({props.favoritesID.length})
 				</Link>
 				<Link className="sign-out-button" to="/">
 					Sign Out
