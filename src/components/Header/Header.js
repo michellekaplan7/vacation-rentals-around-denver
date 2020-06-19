@@ -26,6 +26,7 @@ const Header = (props) => {
 
 Header.propTypes = {
 	userInfo: PropTypes.object.isRequired,
+	favoritesID: PropTypes.array.isRequired
 };
 
 export default Header;

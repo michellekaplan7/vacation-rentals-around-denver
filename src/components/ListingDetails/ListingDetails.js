@@ -81,6 +81,8 @@ ListingDetails.propTypes = {
   features: PropTypes.array.isRequired,
   superhost: PropTypes.bool.isRequired,
   listing_id: PropTypes.number.isRequired,
+  toggleFavorites: PropTypes.func.isRequired,
+  favoritesID: PropTypes.array.isRequired
 };
 
 export default ListingDetails;

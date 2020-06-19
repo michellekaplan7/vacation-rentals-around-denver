@@ -5,6 +5,9 @@ import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 describe("Listing", () => {
+  const mockFavoritesID = [3];
+  const mockToggleFavorites = jest.fn();
+
   it("should render a Listing card", () => {
     const mockListingDetailsData = {
       listing_id: 3,
@@ -20,7 +23,11 @@ describe("Listing", () => {
 
     const router = (
       <MemoryRouter>
-        <ListingDetails {...mockListingDetailsData} />
+        <ListingDetails
+          {...mockListingDetailsData}
+          favoritesID={mockFavoritesID}
+          toggleFavorites={mockToggleFavorites}
+        />
       </MemoryRouter>
     );
 
